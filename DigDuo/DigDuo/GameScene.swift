@@ -1,8 +1,8 @@
 //
-//  GameScene.swift
+//  MainMenu.swift
 //  DigDuo
 //
-//  Created by Tech on 2017-03-16.
+//  Created by Digduo Team on 2017-03-17.
 //  Copyright © 2017 Talpa Studios. All rights reserved.
 //
 
@@ -10,63 +10,59 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
-    
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    private var ui : UserInterface?
+    private var background: SKSpriteNode?
+    private var npc: SKSpriteNode?
     
     override func didMove(to view: SKView) {
+        let dimensions = getDimensionsInScreen()
+        ui = UserInterface(size: CGSize(width: dimensions.width, height: dimensions.height))
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
+        background = SKSpriteNode(texture: SKTexture(imageNamed: "Background"), color: .blue, size: dimensions)
+        background?.blendMode = .replace
+        background?.zPosition = 0
+        background?.colorBlendFactor = 1.0
+        addChild(background!)
+        background!.position += CGVector(dx: dimensions.width/2.0, dy: dimensions.height/2.0)
         
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
+        let tex = SKTexture(imageNamed: "NPC")
+        npc = SKSpriteNode(texture: tex, color: .black, size: tex.size())
         
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(M_PI), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-        }
+        npc?.zPosition = 1
+        npc?.colorBlendFactor = 1.0
+        addChild(npc!)
+        npc!.position += CGVector(dx: dimensions.width/2.0, dy: dimensions.height/2.0)
+        
+        npc!.run(SKAction.repeatForever(SKAction.rotate(byAngle: 360, duration: 1.25)))
+        npc!.run(SKAction.repeatForever(SKAction.sequence([.scale(to: 2.0, duration: 1.0), .scale(to: 1.0, duration: 1.0)])))
+        
+        
+        addChild(ui!)
+        
+        ui!.AddText(name: "txt-score", text: "Score: 000", uiPos: CGPoint(x: 25, y: 85), fontColor: .yellow, size: 25.0)
+        
+        ui!.AddButton(name: "btn-pause", imageNamed: "pause", text: "", uiPos: CGPoint(x: 80, y: 85), fontColor: .clear, size: CGSize(width: 60, height: 60), closure: {
+            self.loadScene(sceneNamed: "GameoverScene", transition: SKTransition.crossFade(withDuration: 0.35))
+        })
     }
     
     
     func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
+        ui!.onTouchDown(point: pos)
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
+        // TODO: notify ui
+        // TODO: notify game
     }
     
     func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
+        ui!.onTouchUp(point: pos)
+        // TODO: notify ui
+        // TODO: notify game
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
-        
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
     
@@ -85,5 +81,36 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+    }
+    
+    func loadScene(sceneNamed: String, transition: SKTransition)
+    {
+        
+        print(sceneNamed)
+        if let skView = view {
+            shutdown()
+            
+            let myScene = SKScene(fileNamed: sceneNamed)
+            myScene?.scaleMode = .aspectFill
+            myScene?.size = (view?.bounds.size)!
+            myScene?.anchorPoint = .zero
+            
+            skView.presentScene(myScene!, transition: transition)
+        }
+    }
+    
+    func resetScene()
+    {
+        loadScene(sceneNamed: (scene?.name!)!, transition: SKTransition.crossFade(withDuration: 0.25))
+    }
+    
+    func toMainMenu()
+    {
+        
+    }
+    
+    func shutdown() {
+        removeAllActions()
+        removeAllChildren()
     }
 }

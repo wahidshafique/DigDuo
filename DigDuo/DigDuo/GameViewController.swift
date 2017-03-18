@@ -10,9 +10,11 @@ class GameViewController: UIViewController {
             skView?.showsFPS = true
             skView?.showsNodeCount = true
             //GameScene.setScale(.asp)
-            let game_Scene = MainSceneScreen(size: (skView?.bounds.size)!)
-            game_Scene.scaleMode = .aspectFill
-            skView?.presentScene(game_Scene)
+            let mainMenu = MainMenu(size: (skView?.bounds.size)!)
+            mainMenu.scaleMode = .aspectFill
+            skView?.presentScene(mainMenu)
+            
+            skView?.backgroundColor = UIColor.blue
         }
     }
     

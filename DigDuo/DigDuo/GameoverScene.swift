@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class MainMenu: SKScene {
+class GameoverScene: SKScene {
     private var ui : UserInterface?
     private var background: SKSpriteNode?
     
@@ -26,12 +26,21 @@ class MainMenu: SKScene {
         
         addChild(ui!)
         
-        ui?.AddText(name: "txt-title", text: "DIGDUO!", uiPos: CGPoint(x: 50, y: 60), fontColor: .yellow, size: 72.0)
-        ui?.AddButton(name: "button1", imageNamed: "button1", text: "START", uiPos: CGPoint(x: 50, y: 40), fontColor: .black, size: CGSize(width: 200, height: 100), closure: {
+        ui?.AddText(name: "txt-gameover", text: "GAMEOVER!", uiPos: CGPoint(x: 50, y: 70), fontColor: .red, size: 72.0)
+        ui?.AddButton(name: "button2", imageNamed: "button1", text: "RESTART", uiPos: CGPoint(x: 50, y: 55), fontColor: .black, size: CGSize(width: 175, height: 100), closure: {
                 self.loadScene(sceneNamed: "GameScene", transition: SKTransition.crossFade(withDuration: 0.25))
         })
-        ui?.AddButton(name: "button2", imageNamed: "button1", text: "LEADERBOARD", uiPos: CGPoint(x: 50, y: 25), fontColor: .black, size: CGSize(width: 200, height: 100), closure: {
-            self.loadScene(sceneNamed: "Leaderboard", transition: SKTransition.doorway(withDuration: 0.75))
+        ui?.AddButton(name: "button3", imageNamed: "button1", text: "MAIN MENU", uiPos: CGPoint(x: 50, y: 40), fontColor: .black, size: CGSize(width: 175, height: 100), closure: {
+            self.loadScene(sceneNamed: "MainMenu", transition: SKTransition.crossFade(withDuration: 0.75))
+        })
+        ui?.AddButton(name: "button1", imageNamed: "button1", text: "???", uiPos: CGPoint(x: 50, y: 25), fontColor: .black, size: CGSize(width: 175, height: 100), closure: {
+            if view != nil {
+                let myScene = EasterEggScene(size: dimensions)
+                myScene.scaleMode = .aspectFill
+                myScene.size = (view.bounds.size)
+                myScene.anchorPoint = .zero
+                view.presentScene(myScene, transition: SKTransition.moveIn(with: SKTransitionDirection.up, duration: 1.0))
+            }
         })
     }
     
@@ -74,15 +83,12 @@ class MainMenu: SKScene {
     
     func loadScene(sceneNamed: String, transition: SKTransition)
     {
-        
-        print(sceneNamed)
         if let skView = view {
             shutdown()
             
             let myScene = SKScene(fileNamed: sceneNamed)
-            myScene?.size = (view?.bounds.size)!
             myScene?.scaleMode = .aspectFill
-            
+            myScene?.size = (view?.bounds.size)!
             myScene?.anchorPoint = .zero
             
             skView.presentScene(myScene!, transition: transition)
@@ -91,7 +97,7 @@ class MainMenu: SKScene {
     
     func resetScene()
     {
-        loadScene(sceneNamed: (scene?.name!)!, transition: SKTransition.crossFade(withDuration: 0.75))
+        loadScene(sceneNamed: (scene?.name!)!, transition: SKTransition.crossFade(withDuration: 0.25))
     }
     
     func toMainMenu()
