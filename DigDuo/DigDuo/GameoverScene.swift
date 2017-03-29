@@ -11,6 +11,7 @@ import GameplayKit
 
 class GameoverScene: SKScene {
     private var ui : UserInterface?
+    private var uiElementNames = [String]()
     private var background: SKSpriteNode?
     
     override func didMove(to view: SKView) {
@@ -26,22 +27,33 @@ class GameoverScene: SKScene {
         
         addChild(ui!)
         
-        ui?.AddText(name: "txt-gameover", text: "GAMEOVER!", uiPos: CGPoint(x: 50, y: 70), fontColor: .red, size: 72.0)
-        ui?.AddButton(name: "button2", imageNamed: "button1", text: "RESTART", uiPos: CGPoint(x: 50, y: 55), fontColor: .black, size: CGSize(width: 175, height: 100), closure: {
-                self.loadScene(sceneNamed: "GameScene", transition: SKTransition.crossFade(withDuration: 0.25))
+        let gameoverTxt = ui?.AddText(name: "txt-gameover", text: "GAMEOVER!", uiPos: CGPoint(x: 50, y: 70), fontColor: .red, size: 72.0)
+        let restartBtn = ui?.AddButton(name: "button2", imageNamed: "button1", text: "RESTART", uiPos: CGPoint(x: 50, y: 55), fontColor: .black, size: CGSize(width: 175, height: 100), closure: {
+            self.loadScene(scene: GameScene.init(), transition: SKTransition.crossFade(withDuration: 0.25))
         })
-        ui?.AddButton(name: "button3", imageNamed: "button1", text: "MAIN MENU", uiPos: CGPoint(x: 50, y: 40), fontColor: .black, size: CGSize(width: 175, height: 100), closure: {
-            self.loadScene(sceneNamed: "MainMenu", transition: SKTransition.crossFade(withDuration: 0.75))
+        let menuBtn = ui?.AddButton(name: "button3", imageNamed: "button1", text: "MAIN MENU", uiPos: CGPoint(x: 50, y: 40), fontColor: .black, size: CGSize(width: 175, height: 100), closure: {
+            self.toMainMenu(transition: SKTransition.crossFade(withDuration: 0.75))
         })
-        ui?.AddButton(name: "button1", imageNamed: "button1", text: "???", uiPos: CGPoint(x: 50, y: 25), fontColor: .black, size: CGSize(width: 175, height: 100), closure: {
-            if view != nil {
+        let easterEggbtn = ui?.AddButton(name: "button1", imageNamed: "button1", text: "???", uiPos: CGPoint(x: 50, y: 25), fontColor: .black, size: CGSize(width: 175, height: 100), closure: {
+            if self.view != nil {
                 let myScene = EasterEggScene(size: dimensions)
-                myScene.scaleMode = .aspectFill
-                myScene.size = (view.bounds.size)
-                myScene.anchorPoint = .zero
-                view.presentScene(myScene, transition: SKTransition.moveIn(with: SKTransitionDirection.up, duration: 1.0))
+                self.loadScene(scene: myScene, transition: SKTransition.crossFade(withDuration: 0.75))
             }
         })
+        
+        if let gameover = gameoverTxt
+        {
+            uiElementNames.append(gameover)
+        }
+        if let restart = restartBtn {
+            uiElementNames.append(restart)
+        }
+        if let menu = menuBtn {
+            uiElementNames.append(menu)
+        }
+        if let easteregg = easterEggbtn {
+            uiElementNames.append(easteregg)
+        }
     }
     
     
@@ -81,28 +93,27 @@ class GameoverScene: SKScene {
         // Called before each frame is rendered
     }
     
-    func loadScene(sceneNamed: String, transition: SKTransition)
+    func loadScene(scene: SKScene, transition: SKTransition)
     {
         if let skView = view {
             shutdown()
             
-            let myScene = SKScene(fileNamed: sceneNamed)
-            myScene?.scaleMode = .aspectFill
-            myScene?.size = (view?.bounds.size)!
-            myScene?.anchorPoint = .zero
+            scene.scaleMode = .aspectFill
+            scene.size = (view?.bounds.size)!
+            scene.anchorPoint = .zero
             
-            skView.presentScene(myScene!, transition: transition)
+            skView.presentScene(scene, transition: transition)
         }
     }
     
     func resetScene()
     {
-        loadScene(sceneNamed: (scene?.name!)!, transition: SKTransition.crossFade(withDuration: 0.25))
+        loadScene(scene: self, transition: SKTransition.crossFade(withDuration: 0.25))
     }
     
-    func toMainMenu()
+    func toMainMenu(transition: SKTransition)
     {
-        
+        loadScene(scene: MainMenu.init(), transition: transition)
     }
     
     func shutdown() {

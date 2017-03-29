@@ -11,7 +11,6 @@
 #ifndef mymath_h
 #define mymath_h
 
-#include <stdio.h>
 #include <math.h>
 
 struct tuple {
@@ -20,17 +19,7 @@ struct tuple {
 
 typedef struct tuple CTuple;
 
-int GCD(CTuple fraction) {
-    const int r = fraction.a % fraction.b;
-    if (r) {
-        fraction.a = fraction.b;
-        fraction.b = r;
-        
-        return GCD(fraction);
-    }
-    
-    return fraction.b;
-}
+int GCD(CTuple fraction);
 
 
 #endif /* mymath_h */

@@ -11,6 +11,7 @@ import GameplayKit
 
 class MainMenu: SKScene {
     private var ui : UserInterface?
+    private var uiElementNames = [String]()
     private var background: SKSpriteNode?
     
     override func didMove(to view: SKView) {
@@ -26,17 +27,29 @@ class MainMenu: SKScene {
         
         addChild(ui!)
         
-        ui?.AddText(name: "txt-title", text: "DIGDUO!", uiPos: CGPoint(x: 50, y: 60), fontColor: .yellow, size: 72.0)
-        ui?.AddButton(name: "button1", imageNamed: "button1", text: "START", uiPos: CGPoint(x: 50, y: 40), fontColor: .black, size: CGSize(width: 200, height: 100), closure: {
-                self.loadScene(sceneNamed: "GameScene", transition: SKTransition.crossFade(withDuration: 0.25))
+        let menuText = ui?.AddText(name: "txt-title", text: "DIGDUO!", uiPos: CGPoint(x: 50, y: 60), fontColor: .yellow, size: 72.0)
+        let startButton = ui?.AddButton(name: "btn-start", imageNamed: "button1", text: "START", uiPos: CGPoint(x: 50, y: 40), fontColor: .black, size: CGSize(width: 200, height: 100), closure: {
+            self.loadScene(scene: GameScene.init(), transition: SKTransition.crossFade(withDuration: 0.25))
         })
-        ui?.AddButton(name: "button2", imageNamed: "button1", text: "LEADERBOARD", uiPos: CGPoint(x: 50, y: 25), fontColor: .black, size: CGSize(width: 200, height: 100), closure: {
-            self.loadScene(sceneNamed: "Leaderboard", transition: SKTransition.doorway(withDuration: 0.75))
+        let leaderboardButton = ui?.AddButton(name: "btn-leaderboard", imageNamed: "button1", text: "LEADERBOARD", uiPos: CGPoint(x: 50, y: 25), fontColor: .black, size: CGSize(width: 200, height: 100), closure: {
+            self.loadScene(scene: Leaderboard.init(), transition: SKTransition.crossFade(withDuration: 0.25))
         })
+        
+        // storing these keys in case we need to access them later through the ui
+        if let title = menuText{
+            uiElementNames.append(title)
+        }
+        if let start = startButton {
+            uiElementNames.append(start)
+        }
+        if let leaderboard = leaderboardButton {
+            uiElementNames.append(leaderboard)
+        }
     }
     
     
     func touchDown(atPoint pos : CGPoint) {
+        // sends touch to ui elements
         ui!.onTouchDown(point: pos)
     }
     
@@ -72,31 +85,27 @@ class MainMenu: SKScene {
         // Called before each frame is rendered
     }
     
-    func loadScene(sceneNamed: String, transition: SKTransition)
+    func loadScene(scene: SKScene, transition: SKTransition)
     {
-        
-        print(sceneNamed)
         if let skView = view {
             shutdown()
             
-            let myScene = SKScene(fileNamed: sceneNamed)
-            myScene?.size = (view?.bounds.size)!
-            myScene?.scaleMode = .aspectFill
+            scene.scaleMode = .aspectFill
+            scene.size = (view?.bounds.size)!
+            scene.anchorPoint = .zero
             
-            myScene?.anchorPoint = .zero
-            
-            skView.presentScene(myScene!, transition: transition)
+            skView.presentScene(scene, transition: transition)
         }
     }
     
-    func resetScene()
+    func resetScene(transition: SKTransition)
     {
-        loadScene(sceneNamed: (scene?.name!)!, transition: SKTransition.crossFade(withDuration: 0.75))
+        loadScene(scene: self, transition: transition)
     }
     
-    func toMainMenu()
+    func toMainMenu(transition: SKTransition)
     {
-        
+        loadScene(scene: MainMenu.init(), transition: transition)
     }
     
     func shutdown() {

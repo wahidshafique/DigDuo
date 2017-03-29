@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		18551E0B1E7B896500A75168 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18551E0A1E7B896500A75168 /* AppDelegate.swift */; };
-		18551E0F1E7B896500A75168 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18551E0E1E7B896500A75168 /* Actions.sks */; };
 		18551E111E7B896500A75168 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18551E101E7B896500A75168 /* GameScene.swift */; };
 		18551E131E7B896500A75168 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18551E121E7B896500A75168 /* GameViewController.swift */; };
 		18551E161E7B896500A75168 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18551E141E7B896500A75168 /* Main.storyboard */; };
@@ -16,11 +15,10 @@
 		18551E1B1E7B896500A75168 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18551E191E7B896500A75168 /* LaunchScreen.storyboard */; };
 		18EFD7A31E7B89D100CD832D /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD7A21E7B89D100CD832D /* Animator.swift */; };
 		18EFD7A61E7B8A8200CD832D /* EasterEggScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD7A51E7B8A8200CD832D /* EasterEggScene.swift */; };
-		A793CEE21E7D091F001AD790 /* EasterEggScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A793CEE11E7D091F001AD790 /* EasterEggScene.sks */; };
-		A7E0FA9E1E7C90390089C0DB /* WorldObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E0FA9D1E7C90390089C0DB /* WorldObject.swift */; };
-		A7E0FAA11E7C90900089C0DB /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E0FAA01E7C90900089C0DB /* World.swift */; };
+		A72F8A1F1E8B225900E44268 /* WorldObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72F8A1E1E8B225900E44268 /* WorldObject.swift */; };
+		A72F8A211E8B227D00E44268 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72F8A201E8B227D00E44268 /* World.swift */; };
+		A72F8A241E8B32C900E44268 /* mymath.c in Sources */ = {isa = PBXBuildFile; fileRef = A72F8A231E8B32C900E44268 /* mymath.c */; };
 		A7E0FAA41E7C90CA0089C0DB /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E0FAA31E7C90CA0089C0DB /* GeneralExtensions.swift */; };
-		A7E0FAA81E7CA3E80089C0DB /* mymath.h in Sources */ = {isa = PBXBuildFile; fileRef = A7E0FAA71E7CA3E80089C0DB /* mymath.h */; };
 		A7E0FAAB1E7CA6670089C0DB /* DigduoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E0FAAA1E7CA6670089C0DB /* DigduoScene.swift */; };
 		A7E0FAAF1E7CBB210089C0DB /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E0FAAE1E7CBB210089C0DB /* MainMenu.swift */; };
 		A7E0FAB21E7CBEC80089C0DB /* UserInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E0FAB11E7CBEC80089C0DB /* UserInterface.swift */; };
@@ -28,18 +26,13 @@
 		A7E0FAB61E7CC0FB0089C0DB /* SimpleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E0FAB51E7CC0FB0089C0DB /* SimpleUI.swift */; };
 		A7E0FAB81E7CC1410089C0DB /* TextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E0FAB71E7CC1410089C0DB /* TextNode.swift */; };
 		A7E0FABA1E7CC20B0089C0DB /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E0FAB91E7CC20B0089C0DB /* ButtonNode.swift */; };
-		A7E0FABC1E7CECE30089C0DB /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A7E0FABB1E7CECE30089C0DB /* GameScene.sks */; };
-		A7E0FABE1E7CED3B0089C0DB /* GameoverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A7E0FABD1E7CED3B0089C0DB /* GameoverScene.sks */; };
-		A7E0FAC01E7CED830089C0DB /* Leaderboard.sks in Resources */ = {isa = PBXBuildFile; fileRef = A7E0FABF1E7CED830089C0DB /* Leaderboard.sks */; };
 		A7E0FAC21E7CEDBC0089C0DB /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E0FAC11E7CEDBC0089C0DB /* Leaderboard.swift */; };
 		A7E0FAC41E7CEDC90089C0DB /* GameoverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E0FAC31E7CEDC90089C0DB /* GameoverScene.swift */; };
-		A7E0FAC61E7CF6950089C0DB /* MainMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = A7E0FAC51E7CF6950089C0DB /* MainMenu.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		18551E071E7B896500A75168 /* DigDuo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigDuo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18551E0A1E7B896500A75168 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		18551E0E1E7B896500A75168 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		18551E101E7B896500A75168 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		18551E121E7B896500A75168 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		18551E151E7B896500A75168 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -48,9 +41,9 @@
 		18551E1C1E7B896500A75168 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18EFD7A21E7B89D100CD832D /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		18EFD7A51E7B8A8200CD832D /* EasterEggScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasterEggScene.swift; sourceTree = "<group>"; };
-		A793CEE11E7D091F001AD790 /* EasterEggScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EasterEggScene.sks; sourceTree = "<group>"; };
-		A7E0FA9D1E7C90390089C0DB /* WorldObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorldObject.swift; path = ../../../../Endian/Endian/WorldObject.swift; sourceTree = "<group>"; };
-		A7E0FAA01E7C90900089C0DB /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = World.swift; path = ../../../../Endian/Endian/World.swift; sourceTree = "<group>"; };
+		A72F8A1E1E8B225900E44268 /* WorldObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldObject.swift; sourceTree = "<group>"; };
+		A72F8A201E8B227D00E44268 /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		A72F8A231E8B32C900E44268 /* mymath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mymath.c; sourceTree = "<group>"; };
 		A7E0FAA31E7C90CA0089C0DB /* GeneralExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralExtensions.swift; sourceTree = "<group>"; };
 		A7E0FAA61E7CA3E80089C0DB /* DigDuo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DigDuo-Bridging-Header.h"; sourceTree = "<group>"; };
 		A7E0FAA71E7CA3E80089C0DB /* mymath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mymath.h; sourceTree = "<group>"; };
@@ -61,12 +54,8 @@
 		A7E0FAB51E7CC0FB0089C0DB /* SimpleUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleUI.swift; sourceTree = "<group>"; };
 		A7E0FAB71E7CC1410089C0DB /* TextNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextNode.swift; sourceTree = "<group>"; };
 		A7E0FAB91E7CC20B0089C0DB /* ButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
-		A7E0FABB1E7CECE30089C0DB /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		A7E0FABD1E7CED3B0089C0DB /* GameoverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameoverScene.sks; sourceTree = "<group>"; };
-		A7E0FABF1E7CED830089C0DB /* Leaderboard.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Leaderboard.sks; sourceTree = "<group>"; };
 		A7E0FAC11E7CEDBC0089C0DB /* Leaderboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
 		A7E0FAC31E7CEDC90089C0DB /* GameoverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameoverScene.swift; sourceTree = "<group>"; };
-		A7E0FAC51E7CF6950089C0DB /* MainMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenu.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,18 +88,12 @@
 		18551E091E7B896500A75168 /* DigDuo */ = {
 			isa = PBXGroup;
 			children = (
+				A72F8A221E8B242C00E44268 /* Animation */,
 				A7E0FAB01E7CBE980089C0DB /* SimpleUI */,
 				A7E0FAA21E7C90B30089C0DB /* Utility */,
 				A7E0FA9F1E7C906C0089C0DB /* World */,
 				18EFD7A41E7B8A6000CD832D /* Scenes */,
 				18551E0A1E7B896500A75168 /* AppDelegate.swift */,
-				18EFD7A21E7B89D100CD832D /* Animator.swift */,
-				18551E0E1E7B896500A75168 /* Actions.sks */,
-				A7E0FAC51E7CF6950089C0DB /* MainMenu.sks */,
-				A793CEE11E7D091F001AD790 /* EasterEggScene.sks */,
-				A7E0FABB1E7CECE30089C0DB /* GameScene.sks */,
-				A7E0FABD1E7CED3B0089C0DB /* GameoverScene.sks */,
-				A7E0FABF1E7CED830089C0DB /* Leaderboard.sks */,
 				18551E121E7B896500A75168 /* GameViewController.swift */,
 				18551E141E7B896500A75168 /* Main.storyboard */,
 				18551E171E7B896500A75168 /* Assets.xcassets */,
@@ -133,10 +116,18 @@
 			name = Scenes;
 			sourceTree = "<group>";
 		};
+		A72F8A221E8B242C00E44268 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				18EFD7A21E7B89D100CD832D /* Animator.swift */,
+			);
+			name = Animation;
+			sourceTree = "<group>";
+		};
 		A7E0FA9A1E7C8F4B0089C0DB /* WorldObjects */ = {
 			isa = PBXGroup;
 			children = (
-				A7E0FA9D1E7C90390089C0DB /* WorldObject.swift */,
+				A72F8A1E1E8B225900E44268 /* WorldObject.swift */,
 			);
 			name = WorldObjects;
 			sourceTree = "<group>";
@@ -144,7 +135,7 @@
 		A7E0FA9F1E7C906C0089C0DB /* World */ = {
 			isa = PBXGroup;
 			children = (
-				A7E0FAA01E7C90900089C0DB /* World.swift */,
+				A72F8A201E8B227D00E44268 /* World.swift */,
 				A7E0FA9A1E7C8F4B0089C0DB /* WorldObjects */,
 			);
 			name = World;
@@ -165,6 +156,7 @@
 			children = (
 				A7E0FAA71E7CA3E80089C0DB /* mymath.h */,
 				A7E0FAA61E7CA3E80089C0DB /* DigDuo-Bridging-Header.h */,
+				A72F8A231E8B32C900E44268 /* mymath.c */,
 			);
 			name = CStuff;
 			sourceTree = "<group>";
@@ -248,15 +240,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7E0FABE1E7CED3B0089C0DB /* GameoverScene.sks in Resources */,
 				18551E161E7B896500A75168 /* Main.storyboard in Resources */,
-				A7E0FABC1E7CECE30089C0DB /* GameScene.sks in Resources */,
-				A793CEE21E7D091F001AD790 /* EasterEggScene.sks in Resources */,
 				18551E181E7B896500A75168 /* Assets.xcassets in Resources */,
 				18551E1B1E7B896500A75168 /* LaunchScreen.storyboard in Resources */,
-				A7E0FAC61E7CF6950089C0DB /* MainMenu.sks in Resources */,
-				18551E0F1E7B896500A75168 /* Actions.sks in Resources */,
-				A7E0FAC01E7CED830089C0DB /* Leaderboard.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,23 +253,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A72F8A211E8B227D00E44268 /* World.swift in Sources */,
 				A7E0FAAF1E7CBB210089C0DB /* MainMenu.swift in Sources */,
 				A7E0FAA41E7C90CA0089C0DB /* GeneralExtensions.swift in Sources */,
 				18EFD7A61E7B8A8200CD832D /* EasterEggScene.swift in Sources */,
 				A7E0FAB81E7CC1410089C0DB /* TextNode.swift in Sources */,
-				A7E0FAA81E7CA3E80089C0DB /* mymath.h in Sources */,
 				A7E0FAC41E7CEDC90089C0DB /* GameoverScene.swift in Sources */,
 				18EFD7A31E7B89D100CD832D /* Animator.swift in Sources */,
+				A72F8A1F1E8B225900E44268 /* WorldObject.swift in Sources */,
 				18551E111E7B896500A75168 /* GameScene.swift in Sources */,
 				A7E0FAB41E7CBF180089C0DB /* Globals.swift in Sources */,
 				18551E131E7B896500A75168 /* GameViewController.swift in Sources */,
 				18551E0B1E7B896500A75168 /* AppDelegate.swift in Sources */,
 				A7E0FAC21E7CEDBC0089C0DB /* Leaderboard.swift in Sources */,
-				A7E0FAA11E7C90900089C0DB /* World.swift in Sources */,
+				A72F8A241E8B32C900E44268 /* mymath.c in Sources */,
 				A7E0FAAB1E7CA6670089C0DB /* DigduoScene.swift in Sources */,
 				A7E0FAB21E7CBEC80089C0DB /* UserInterface.swift in Sources */,
 				A7E0FABA1E7CC20B0089C0DB /* ButtonNode.swift in Sources */,
-				A7E0FA9E1E7C90390089C0DB /* WorldObject.swift in Sources */,
 				A7E0FAB61E7CC0FB0089C0DB /* SimpleUI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

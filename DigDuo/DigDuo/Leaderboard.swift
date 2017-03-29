@@ -11,6 +11,7 @@ import GameplayKit
 
 class Leaderboard: SKScene {
     private var ui : UserInterface?
+    private var uiElementNames = [String]()
     private var background: SKSpriteNode?
     private var npc: SKSpriteNode?
     
@@ -38,18 +39,44 @@ class Leaderboard: SKScene {
         
         addChild(ui!)
         
-        ui?.AddText(name: "txt-title", text: "LEADERBOARD", uiPos: CGPoint(x: 50, y: 75), fontColor: .red, size: 56.0)
+        let maintxt = ui?.AddText(name: "txt-leaderboard", text: "LEADERBOARD", uiPos: CGPoint(x: 50, y: 75), fontColor: .red, size: 56.0)
         
-        ui?.AddText(name: "txt-title", text: "1. 4096", uiPos: CGPoint(x: 50, y: 60), fontColor: .yellow, size: 48.0)
-        ui?.AddText(name: "txt-title", text: "2. 2048", uiPos: CGPoint(x: 50, y: 55), fontColor: .yellow, size: 44.0)
-        ui?.AddText(name: "txt-title", text: "3. 1024", uiPos: CGPoint(x: 50, y: 50), fontColor: .yellow, size: 40.0)
-        ui?.AddText(name: "txt-title", text: "4. 512", uiPos: CGPoint(x: 50, y: 45), fontColor: .yellow, size: 36.0)
-        ui?.AddText(name: "txt-title", text: "5. 256", uiPos: CGPoint(x: 50, y: 40), fontColor: .yellow, size: 32.0)
-        ui?.AddText(name: "txt-title", text: "6. 128", uiPos: CGPoint(x: 50, y: 35), fontColor: .yellow, size: 28.0)
+        let score1txt = ui?.AddText(name: "txt-score1", text: "1. 4096", uiPos: CGPoint(x: 50, y: 60), fontColor: .yellow, size: 48.0)
+        let score2txt = ui?.AddText(name: "txt-score2", text: "2. 2048", uiPos: CGPoint(x: 50, y: 55), fontColor: .yellow, size: 44.0)
+        let score3txt = ui?.AddText(name: "txt-score3", text: "3. 1024", uiPos: CGPoint(x: 50, y: 50), fontColor: .yellow, size: 40.0)
+        let score4txt = ui?.AddText(name: "txt-score4", text: "4. 512", uiPos: CGPoint(x: 50, y: 45), fontColor: .yellow, size: 36.0)
+        let score5txt = ui?.AddText(name: "txt-score5", text: "5. 256", uiPos: CGPoint(x: 50, y: 40), fontColor: .yellow, size: 32.0)
+        let score6txt = ui?.AddText(name: "txt-score6", text: "6. 128", uiPos: CGPoint(x: 50, y: 35), fontColor: .yellow, size: 28.0)
         
-        ui?.AddButton(name: "button1", imageNamed: "button1", text: "MENU", uiPos: CGPoint(x: 50, y: 20), fontColor: .black, size: CGSize(width: 175, height: 75), closure: {
-                self.loadScene(sceneNamed: "MainMenu", transition: SKTransition.crossFade(withDuration: 0.75))
+        let menuBtn = ui?.AddButton(name: "btn-menu", imageNamed: "button1", text: "MENU", uiPos: CGPoint(x: 50, y: 20), fontColor: .black, size: CGSize(width: 175, height: 75), closure: {
+            self.toMainMenu(transition: SKTransition.crossFade(withDuration: 0.75))
         })
+        
+        // storing these keys in case we need to access them later through the ui
+        if let main = maintxt{
+            uiElementNames.append(main)
+        }
+        if let score1 = score1txt {
+            uiElementNames.append(score1)
+        }
+        if let score2 = score2txt {
+            uiElementNames.append(score2)
+        }
+        if let score3 = score3txt {
+            uiElementNames.append(score3)
+        }
+        if let score4 = score4txt {
+            uiElementNames.append(score4)
+        }
+        if let score5 = score5txt {
+            uiElementNames.append(score5)
+        }
+        if let score6 = score6txt {
+            uiElementNames.append(score6)
+        }
+        if let menu = menuBtn {
+            uiElementNames.append(menu)
+        }
     }
     
     
@@ -89,30 +116,27 @@ class Leaderboard: SKScene {
         // Called before each frame is rendered
     }
     
-    func loadScene(sceneNamed: String, transition: SKTransition)
+    func loadScene(scene: SKScene, transition: SKTransition)
     {
-        
-        print(sceneNamed)
         if let skView = view {
             shutdown()
             
-            let myScene = SKScene(fileNamed: sceneNamed)
-            myScene?.scaleMode = .aspectFill
-            myScene?.size = (view?.bounds.size)!
-            myScene?.anchorPoint = .zero
+            scene.scaleMode = .aspectFill
+            scene.size = (view?.bounds.size)!
+            scene.anchorPoint = .zero
             
-            skView.presentScene(myScene!, transition: transition)
+            skView.presentScene(scene, transition: transition)
         }
     }
     
-    func resetScene()
+    func resetScene(transition: SKTransition)
     {
-        loadScene(sceneNamed: (scene?.name!)!, transition: SKTransition.crossFade(withDuration: 0.25))
+        loadScene(scene: self, transition: transition)
     }
     
-    func toMainMenu()
+    func toMainMenu(transition: SKTransition)
     {
-        
+        loadScene(scene: MainMenu.init(), transition: transition)
     }
     
     func shutdown() {

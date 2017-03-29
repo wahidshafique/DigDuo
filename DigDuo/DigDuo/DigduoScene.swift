@@ -10,9 +10,8 @@ import SpriteKit
 import GameKit
 
 protocol IDigduoScene : class {
-    func loadScene(sceneNamed: String, transition: SKTransition)
-    func resetScene()
-    func toMainMenu()
-    
+    func loadScene(scene: SKScene, transition: SKTransition)
+    func toMainMenu(transition: SKTransition)
+    func resetScene(transition: SKTransition)
     func shutdown()
 }

@@ -11,6 +11,7 @@ import GameplayKit
 
 class GameScene: SKScene {
     private var ui : UserInterface?
+    private var uiElementNames = [String]()
     private var background: SKSpriteNode?
     private var npc: SKSpriteNode?
     
@@ -39,13 +40,19 @@ class GameScene: SKScene {
         
         addChild(ui!)
         
-        ui!.AddText(name: "txt-score", text: "Score: 000", uiPos: CGPoint(x: 25, y: 85), fontColor: .yellow, size: 25.0)
-        
-        ui!.AddButton(name: "btn-pause", imageNamed: "pause", text: "", uiPos: CGPoint(x: 80, y: 85), fontColor: .clear, size: CGSize(width: 60, height: 60), closure: {
-            self.loadScene(sceneNamed: "GameoverScene", transition: SKTransition.crossFade(withDuration: 0.35))
+        let scoreTxt = ui?.AddText(name: "txt-score", text: "Score: 000", uiPos: CGPoint(x: 25, y: 85), fontColor: .yellow, size: 25.0)
+        let pauseButton = ui?.AddButton(name: "btn-pause", imageNamed: "pause", text: "", uiPos: CGPoint(x: 80, y: 85), fontColor: .clear, size: CGSize(width: 60, height: 60), closure: {
+            self.loadScene(scene: GameoverScene.init(), transition: SKTransition.crossFade(withDuration: 0.35))
         })
+        
+        // storing these keys in case we need to access them later through the ui
+        if let score = scoreTxt{
+            uiElementNames.append(score)
+        }
+        if let pause = pauseButton {
+            uiElementNames.append(pause)
+        }
     }
-    
     
     func touchDown(atPoint pos : CGPoint) {
         ui!.onTouchDown(point: pos)
@@ -83,30 +90,27 @@ class GameScene: SKScene {
         // Called before each frame is rendered
     }
     
-    func loadScene(sceneNamed: String, transition: SKTransition)
+    func loadScene(scene: SKScene, transition: SKTransition)
     {
-        
-        print(sceneNamed)
         if let skView = view {
             shutdown()
             
-            let myScene = SKScene(fileNamed: sceneNamed)
-            myScene?.scaleMode = .aspectFill
-            myScene?.size = (view?.bounds.size)!
-            myScene?.anchorPoint = .zero
+            scene.scaleMode = .aspectFill
+            scene.size = (view?.bounds.size)!
+            scene.anchorPoint = .zero
             
-            skView.presentScene(myScene!, transition: transition)
+            skView.presentScene(scene, transition: transition)
         }
     }
     
     func resetScene()
     {
-        loadScene(sceneNamed: (scene?.name!)!, transition: SKTransition.crossFade(withDuration: 0.25))
+        loadScene(scene: self, transition: SKTransition.crossFade(withDuration: 0.25))
     }
     
-    func toMainMenu()
+    func toMainMenu(transition: SKTransition)
     {
-        
+        loadScene(scene: MainMenu.init(), transition: transition)
     }
     
     func shutdown() {
