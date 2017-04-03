@@ -18,7 +18,7 @@ class MainMenu: SKScene {
         let dimensions = getDimensionsInScreen()
         ui = UserInterface(size: CGSize(width: dimensions.width, height: dimensions.height))
         
-        background = SKSpriteNode(texture: SKTexture(imageNamed: "Background"), color: .blue, size: dimensions)
+        background = SKSpriteNode(texture: SKTexture(imageNamed: "Background"), color: .white, size: dimensions)
         background?.blendMode = .replace
         background?.zPosition = 0
         background?.colorBlendFactor = 1.0
@@ -28,10 +28,15 @@ class MainMenu: SKScene {
         addChild(ui!)
         
         let menuText = ui?.AddText(name: "txt-title", text: "DIGDUO!", uiPos: CGPoint(x: 50, y: 60), fontColor: .yellow, size: 72.0)
-        let startButton = ui?.AddButton(name: "btn-start", imageNamed: "button1", text: "START", uiPos: CGPoint(x: 50, y: 40), fontColor: .black, size: CGSize(width: 200, height: 100), closure: {
+        
+        let atlas = SKTextureAtlas(named: "UIButtons")
+        let textureButton = atlas.textureNamed("blue_button05")
+        
+        
+        let startButton = ui?.AddButton(name: "btn-start", tex: textureButton, text: "START", uiPos: CGPoint(x: 50, y: 40), fontColor: .black, size: CGSize(width: 200, height: 100), closure: {
             self.loadScene(scene: GameScene.init(), transition: SKTransition.crossFade(withDuration: 0.25))
         })
-        let leaderboardButton = ui?.AddButton(name: "btn-leaderboard", imageNamed: "button1", text: "LEADERBOARD", uiPos: CGPoint(x: 50, y: 25), fontColor: .black, size: CGSize(width: 200, height: 100), closure: {
+        let leaderboardButton = ui?.AddButton(name: "btn-leaderboard", tex: textureButton, text: "LEADERBOARD", uiPos: CGPoint(x: 50, y: 25), fontColor: .black, size: CGSize(width: 200, height: 100), closure: {
             self.loadScene(scene: Leaderboard.init(), transition: SKTransition.crossFade(withDuration: 0.25))
         })
         

@@ -44,11 +44,13 @@ class ButtonNode : SKSpriteNode, SimpleUI
         }
     }
     
-    func setText(text: TextNode)
+    func setText(text: TextNode, buttonRect: CGRect, scale: CGFloat)
     {
         txt = text
         addChild(text)
         text.position = .zero
+        text.position.y -= text.frame.size.height/2
+        text.adjustLabelFontSizeToFitRect(rect: buttonRect, scale: scale)
     }
     
     var touchClosure : (() -> Void)?

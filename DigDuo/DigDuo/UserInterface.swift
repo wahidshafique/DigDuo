@@ -50,7 +50,7 @@ class UserInterface : SKNode {
     }
     
     // returns the given name. names can be different if you previously tried to assign that specific name
-    func AddButton(name: String, imageNamed: String, text: String, uiPos: CGPoint, fontColor: UIColor, size: CGSize,
+    func AddButton(name: String, imageNamed: String, text: String, uiPos: CGPoint, fontColor: UIColor, scaleFactor: CGFloat = 0.5, size: CGSize,
                 closure: @escaping () -> Void) -> String
     {
         var assignedName: String = name
@@ -69,10 +69,43 @@ class UserInterface : SKNode {
         
         let newText = TextNode(text: text)
         newText.name = "txt-" + assignedName
-        newText.fontSize = 30.0
         newText.fontColor = fontColor
         
-        button.setText(text: newText)
+        button.setText(text: newText, buttonRect: button.frame, scale: scaleFactor )
+        
+        addChild(button)
+        button.position = uiToPixelPoint(point: uiPos)
+        
+        uiNodes[assignedName] = button
+        
+        UserInterface.buttonCount += 1
+        
+        return assignedName
+    }
+    
+    // returns the given name. names can be different if you previously tried to assign that specific name
+    func AddButton(name: String, tex: SKTexture, text: String, uiPos: CGPoint, fontColor: UIColor, scaleFactor: CGFloat = 0.5, size: CGSize,
+                   closure: @escaping () -> Void) -> String
+    {
+        var assignedName: String = name
+        
+        if uiNodes.keys.contains(where: {
+            return $0 == self.name
+        }){
+            assignedName = name + String(UserInterface.buttonCount)
+        }
+        
+        let button = ButtonNode(texture: tex, color: .white, size: size)
+        
+        print(size.height)
+        button.touchClosure = closure
+        button.name = assignedName
+        
+        let newText = TextNode(text: text)
+        newText.name = "txt-" + assignedName
+        newText.fontColor = fontColor
+        
+        button.setText(text: newText, buttonRect: button.frame, scale: scaleFactor )
         
         addChild(button)
         button.position = uiToPixelPoint(point: uiPos)
