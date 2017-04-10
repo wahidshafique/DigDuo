@@ -27,14 +27,16 @@ class GameoverScene: SKScene {
         
         addChild(ui!)
         
-        let gameoverTxt = ui?.AddText(name: "txt-gameover", text: "GAMEOVER!", uiPos: CGPoint(x: 50, y: 70), fontColor: .red, size: 72.0)
-        let restartBtn = ui?.AddButton(name: "button2", imageNamed: "button1", text: "RESTART", uiPos: CGPoint(x: 50, y: 55), fontColor: .black, size: CGSize(width: 175, height: 100), closure: {
+        let textureButton = ui?.atlas.textureNamed("blue_button05")
+        
+        let gameoverTxt = ui?.AddText(name: "txt-gameover", text: "GAME OVER!", uiPos: CGPoint(x: 50, y: 70), fontColor: .red, size: 62.0)
+        let restartBtn = ui?.AddButton(name: "button2", tex: textureButton!, text: "RESTART", uiPos: CGPoint(x: 50, y: 55), fontColor: .black, size: CGSize(width: 175, height: 100), closure: {
             self.loadScene(scene: GameScene.init(), transition: SKTransition.crossFade(withDuration: 0.25))
         })
-        let menuBtn = ui?.AddButton(name: "button3", imageNamed: "button1", text: "MAIN MENU", uiPos: CGPoint(x: 50, y: 40), fontColor: .black, size: CGSize(width: 175, height: 100), closure: {
+        let menuBtn = ui?.AddButton(name: "button3", tex: textureButton!, text: "MAIN MENU", uiPos: CGPoint(x: 50, y: 40), fontColor: .black, size: CGSize(width: 175, height: 100), closure: {
             self.toMainMenu(transition: SKTransition.crossFade(withDuration: 0.75))
         })
-        let easterEggbtn = ui?.AddButton(name: "button1", imageNamed: "button1", text: "???", uiPos: CGPoint(x: 50, y: 25), fontColor: .black, size: CGSize(width: 175, height: 100), closure: {
+        let easterEggbtn = ui?.AddButton(name: "button1", tex: textureButton!, text: "???", uiPos: CGPoint(x: 50, y: 25), fontColor: .black, size: CGSize(width: 175, height: 100), closure: {
             if self.view != nil {
                 let myScene = EasterEggScene(size: dimensions)
                 self.loadScene(scene: myScene, transition: SKTransition.crossFade(withDuration: 0.75))

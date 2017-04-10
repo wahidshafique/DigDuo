@@ -29,15 +29,12 @@ class MainMenu: SKScene {
         
         let menuText = ui?.AddText(name: "txt-title", text: "DIGDUO!", uiPos: CGPoint(x: 50, y: 60), fontColor: .yellow, size: 72.0)
         
-        let atlas = SKTextureAtlas(named: "UIButtons")
-        let textureButton = atlas.textureNamed("blue_button05")
-        
-        
-        let startButton = ui?.AddButton(name: "btn-start", tex: textureButton, text: "START", uiPos: CGPoint(x: 50, y: 40), fontColor: .black, size: CGSize(width: 200, height: 100), closure: {
+        let textureButton = ui?.atlas.textureNamed("blue_button05")
+        let startButton = ui?.AddButton(name: "btn-start", tex: textureButton!, text: "START", uiPos: CGPoint(x: 50, y: 40), fontColor: .black, size: CGSize(width: 200, height: 100), closure: {
             self.loadScene(scene: GameScene.init(), transition: SKTransition.crossFade(withDuration: 0.25))
         })
-        let leaderboardButton = ui?.AddButton(name: "btn-leaderboard", tex: textureButton, text: "LEADERBOARD", uiPos: CGPoint(x: 50, y: 25), fontColor: .black, size: CGSize(width: 200, height: 100), closure: {
-            self.loadScene(scene: Leaderboard.init(), transition: SKTransition.crossFade(withDuration: 0.25))
+        let leaderboardButton = ui?.AddButton(name: "btn-leaderboard", tex: textureButton!, text: "LEADERBOARD", uiPos: CGPoint(x: 50, y: 25), fontColor: .black, size: CGSize(width: 200, height: 100), closure: {
+            self.loadScene(scene: Leaderboard.init(), transition: SKTransition.doorsCloseVertical(withDuration: 0.25))
         })
         
         // storing these keys in case we need to access them later through the ui

@@ -10,6 +10,9 @@ import SpriteKit
 import GameKit
 
 class UserInterface : SKNode {
+    let fontStyleName = "ARCADECLASSIC"
+    let atlas = SKTextureAtlas(named: "UIButtons")
+    
     init(size: CGSize)
     {
         super.init()
@@ -38,6 +41,7 @@ class UserInterface : SKNode {
         newText.name = assignedName
         newText.fontSize = size
         newText.fontColor = fontColor
+        newText.fontName = fontStyleName
         
         addChild(newText)
         newText.position = uiToPixelPoint(point: uiPos)
@@ -70,6 +74,7 @@ class UserInterface : SKNode {
         let newText = TextNode(text: text)
         newText.name = "txt-" + assignedName
         newText.fontColor = fontColor
+        newText.fontName = fontStyleName
         
         button.setText(text: newText, buttonRect: button.frame, scale: scaleFactor )
         
@@ -104,6 +109,7 @@ class UserInterface : SKNode {
         let newText = TextNode(text: text)
         newText.name = "txt-" + assignedName
         newText.fontColor = fontColor
+        newText.fontName = fontStyleName
         
         button.setText(text: newText, buttonRect: button.frame, scale: scaleFactor )
         
@@ -146,7 +152,7 @@ class UserInterface : SKNode {
         
         if uiNodes.keys.contains(where: {
             return $0 == nodeName
-        }) {
+        }) {  
             node = uiNodes[nodeName]
         }
         

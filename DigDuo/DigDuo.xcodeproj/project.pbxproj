@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180898FD1E9C2F75006D2AF7 /* ARCADECLASSIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 180898FC1E9C2F43006D2AF7 /* ARCADECLASSIC.TTF */; };
 		18551E0B1E7B896500A75168 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18551E0A1E7B896500A75168 /* AppDelegate.swift */; };
 		18551E111E7B896500A75168 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18551E101E7B896500A75168 /* GameScene.swift */; };
 		18551E131E7B896500A75168 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18551E121E7B896500A75168 /* GameViewController.swift */; };
 		18551E161E7B896500A75168 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18551E141E7B896500A75168 /* Main.storyboard */; };
 		18551E181E7B896500A75168 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18551E171E7B896500A75168 /* Assets.xcassets */; };
 		18551E1B1E7B896500A75168 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18551E191E7B896500A75168 /* LaunchScreen.storyboard */; };
+		18B31D9E1E9C27F400D39581 /* Effector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B31D9D1E9C27F400D39581 /* Effector.swift */; };
 		18EFD7A31E7B89D100CD832D /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD7A21E7B89D100CD832D /* Animator.swift */; };
 		18EFD7A61E7B8A8200CD832D /* EasterEggScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD7A51E7B8A8200CD832D /* EasterEggScene.swift */; };
 		18F8176C1E929AF1005626EC /* SpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8176B1E929AF1005626EC /* SpriteSheet.swift */; };
@@ -33,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		180898FC1E9C2F43006D2AF7 /* ARCADECLASSIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARCADECLASSIC.TTF; sourceTree = "<group>"; };
 		18551E071E7B896500A75168 /* DigDuo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigDuo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18551E0A1E7B896500A75168 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18551E101E7B896500A75168 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -41,6 +44,7 @@
 		18551E171E7B896500A75168 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18551E1A1E7B896500A75168 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18551E1C1E7B896500A75168 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18B31D9D1E9C27F400D39581 /* Effector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Effector.swift; sourceTree = "<group>"; };
 		18EFD7A21E7B89D100CD832D /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		18EFD7A51E7B8A8200CD832D /* EasterEggScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasterEggScene.swift; sourceTree = "<group>"; };
 		18F8176B1E929AF1005626EC /* SpriteSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSheet.swift; sourceTree = "<group>"; };
@@ -73,6 +77,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		180898FA1E9C2F29006D2AF7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				180898FB1E9C2F32006D2AF7 /* font */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		180898FB1E9C2F32006D2AF7 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				180898FC1E9C2F43006D2AF7 /* ARCADECLASSIC.TTF */,
+			);
+			name = font;
+			sourceTree = "<group>";
+		};
 		18551DFE1E7B896500A75168 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +112,7 @@
 		18551E091E7B896500A75168 /* DigDuo */ = {
 			isa = PBXGroup;
 			children = (
+				180898FA1E9C2F29006D2AF7 /* Resources */,
 				A72F8A221E8B242C00E44268 /* Animation */,
 				A7E0FAB01E7CBE980089C0DB /* SimpleUI */,
 				A7E0FAA21E7C90B30089C0DB /* Utility */,
@@ -125,6 +146,7 @@
 			children = (
 				18EFD7A21E7B89D100CD832D /* Animator.swift */,
 				18F8176D1E92B8AE005626EC /* Animatable.swift */,
+				18B31D9D1E9C27F400D39581 /* Effector.swift */,
 			);
 			name = Animation;
 			sourceTree = "<group>";
@@ -249,6 +271,7 @@
 				18551E161E7B896500A75168 /* Main.storyboard in Resources */,
 				18551E181E7B896500A75168 /* Assets.xcassets in Resources */,
 				18551E1B1E7B896500A75168 /* LaunchScreen.storyboard in Resources */,
+				180898FD1E9C2F75006D2AF7 /* ARCADECLASSIC.TTF in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A72F8A211E8B227D00E44268 /* World.swift in Sources */,
+				18B31D9E1E9C27F400D39581 /* Effector.swift in Sources */,
 				A7E0FAAF1E7CBB210089C0DB /* MainMenu.swift in Sources */,
 				A7E0FAA41E7C90CA0089C0DB /* GeneralExtensions.swift in Sources */,
 				18EFD7A61E7B8A8200CD832D /* EasterEggScene.swift in Sources */,

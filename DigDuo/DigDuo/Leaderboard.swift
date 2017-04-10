@@ -48,8 +48,10 @@ class Leaderboard: SKScene {
         let score5txt = ui?.AddText(name: "txt-score5", text: "5. 256", uiPos: CGPoint(x: 50, y: 40), fontColor: .yellow, size: 32.0)
         let score6txt = ui?.AddText(name: "txt-score6", text: "6. 128", uiPos: CGPoint(x: 50, y: 35), fontColor: .yellow, size: 28.0)
         
-        let menuBtn = ui?.AddButton(name: "btn-menu", imageNamed: "button1", text: "MENU", uiPos: CGPoint(x: 50, y: 20), fontColor: .black, size: CGSize(width: 175, height: 75), closure: {
-            self.toMainMenu(transition: SKTransition.crossFade(withDuration: 0.75))
+        
+        let textureButton = ui?.atlas.textureNamed("blue_button05")
+        let menuBtn = ui?.AddButton(name: "btn-menu", tex: textureButton! , text: "MENU", uiPos: CGPoint(x: 50, y: 20), fontColor: .black, size: CGSize(width: 175, height: 75), closure: {
+            self.toMainMenu(transition: SKTransition.doorsCloseHorizontal(withDuration: 0.75))
         })
         
         // storing these keys in case we need to access them later through the ui
