@@ -10,34 +10,28 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene {
+    //TODO temp, abstract it later
+    private var player :Player?
+    private var cam:SKCameraNode?
+    
     private var ui : UserInterface?
     private var uiElementNames = [String]()
     private var background: SKSpriteNode?
     private var npc: SKSpriteNode?
     
     override func didMove(to view: SKView) {
+        super.didMove(to: view)
+        self.backgroundColor = UIColor.brown
         let dimensions = getDimensionsInScreen()
         ui = UserInterface(size: CGSize(width: dimensions.width, height: dimensions.height))
         
-        background = SKSpriteNode(texture: SKTexture(imageNamed: "Background"), color: .blue, size: dimensions)
+        background = SKSpriteNode(texture: SKTexture(imageNamed: "Background"), color: .white, size: CGSize(width: 1920, height: 1080))
         background?.blendMode = .replace
         background?.zPosition = 0
         background?.colorBlendFactor = 1.0
         addChild(background!)
-        background!.position += CGVector(dx: dimensions.width/2.0, dy: dimensions.height/2.0)
-        
-        let tex = SKTexture(imageNamed: "NPC")
-        npc = SKSpriteNode(texture: tex, color: .black, size: tex.size())
-        
-        npc?.zPosition = 1
-        npc?.colorBlendFactor = 1.0
-        addChild(npc!)
-        npc!.position += CGVector(dx: dimensions.width/2.0, dy: dimensions.height/2.0)
-        
-        npc!.run(SKAction.repeatForever(SKAction.rotate(byAngle: 360, duration: 1.25)))
-        npc!.run(SKAction.repeatForever(SKAction.sequence([.scale(to: 2.0, duration: 1.0), .scale(to: 1.0, duration: 1.0)])))
-        
-        
+        background!.position += CGVector(dx: dimensions.width/4.0, dy: dimensions.height/2.0)
+    
         addChild(ui!)
         
         let scoreTxt = ui?.AddText(name: "txt-score", text: "Score: 000", uiPos: CGPoint(x: 25, y: 85), fontColor: .yellow, size: 25.0)
@@ -52,13 +46,28 @@ class GameScene: SKScene {
         if let pause = pauseButton {
             uiElementNames.append(pause)
         }
+        
+        //todo, migrate to world..
+        cam = SKCameraNode()
+        self.camera = cam
+        self.addChild(cam!)
+        
+        //Player = new Pl
+        player =  Player()
+        player?.yScale = (player?.yScale)! * -1
+        self.addChild(player!)
+        
     }
     
     func touchDown(atPoint pos : CGPoint) {
+        player?.rotateVersus(destPoint: pos)
+        player?.run(SKAction.move(to: pos, duration: 1.0))
         ui!.onTouchDown(point: pos)
     }
     
     func touchMoved(toPoint pos : CGPoint) {
+        player?.rotateVersus(destPoint: pos)
+        player?.run(SKAction.move(to: pos, duration: 1.0))
         // TODO: notify ui
         // TODO: notify game
     }
@@ -70,6 +79,10 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let location = touches.first?.location(in: self) {
+            player?.rotateVersus(destPoint: location)
+            player?.run(SKAction.move(to: location, duration: 1.0))
+        }
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
     
@@ -87,6 +100,10 @@ class GameScene: SKScene {
     
     
     override func update(_ currentTime: TimeInterval) {
+        super.update(currentTime)
+        if let camera = cam, let pl = player {
+            camera.position = pl.position
+        }
         // Called before each frame is rendered
     }
     

@@ -18,6 +18,14 @@ func sync(lock: NSObject, closure: () -> Void) {
     objc_sync_exit(lock)
 }
 
+extension SKNode {
+    func rotateVersus(destPoint: CGPoint) {
+        let v1 = CGVector(dx:0, dy:1)
+        let v2 = CGVector(dx:destPoint.x - position.x, dy: destPoint.y - position.y)
+        let angle = atan2(v2.dy, v2.dx) - atan2(v1.dy, v1.dx)
+        zRotation = angle
+    }
+}
 
 extension CGVector {
     static func *(_ lhs: CGVector, _ scalarValue: CGFloat) -> CGVector {
