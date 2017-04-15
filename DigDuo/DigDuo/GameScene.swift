@@ -33,12 +33,15 @@ class GameScene: SKScene {
         addChild(background!)
         background!.position += CGVector(dx: dimensions.width/4.0, dy: dimensions.height/2.0)
     
-        addChild(ui!)
         
-        let scoreTxt = ui?.AddText(name: "txt-score", text: "Score: 000", uiPos: CGPoint(x: 25, y: 85), fontColor: .yellow, size: 25.0)
-        let pauseButton = ui?.AddButton(name: "btn-pause", imageNamed: "pause", text: "", uiPos: CGPoint(x: 80, y: 85), fontColor: .clear, size: CGSize(width: 60, height: 60), closure: {
+        //addChild(ui!)
+        print("dimension x \(dimensions.width) \n")
+        print("dimension y \(dimensions.height) \n")
+        let scoreTxt = ui?.AddText(name: "txt-score", text: "Score: 000", uiPos: CGPoint(x: 15, y: 45), fontColor: .yellow, size: 25.0)
+        let pauseButton = ui?.AddButton(name: "btn-pause", imageNamed: "pause", text: "", uiPos: CGPoint(x: 40, y: 45), fontColor: .clear, size: CGSize(width: 60, height: 60), closure: {
             self.loadScene(scene: GameoverScene.init(), transition: SKTransition.crossFade(withDuration: 0.35))
         })
+        
         
         // storing these keys in case we need to access them later through the ui
         if let score = scoreTxt{
@@ -47,6 +50,8 @@ class GameScene: SKScene {
         if let pause = pauseButton {
             uiElementNames.append(pause)
         }
+        //addChild(ui!)
+
         
         //Player = new Pl
         player =  Player()
@@ -89,6 +94,7 @@ class GameScene: SKScene {
         
         cam?.constraints = [playerLocationConstraint, levelEdgeConstraint]
         self.addChild(cam!)
+        cam?.addChild(ui!)
     }
     
 
