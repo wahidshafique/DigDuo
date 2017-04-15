@@ -90,7 +90,7 @@ class GameScene: SKScene {
         // (no need for `- 100` if you want zero padding)
         // use min() to make sure we don't inset too far if the level is small
         let xInset = min((scaledSize.width / 2) - 100.0, (boardContentRect?.width)! / 2)
-        let yInset = min((scaledSize.height / 2) + 100.0, (boardContentRect?.height)! / 2)
+        let yInset = min((scaledSize.height / 2) - 100.0, (boardContentRect?.height)! - (boardNode?.size.height)!)
         let insetContentRect = boardContentRect?.insetBy(dx: xInset, dy: yInset)
         
         // use the corners of the inset as the X and Y range of a position constraint
@@ -156,9 +156,6 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
-        if let camera = cam, let pl = player?.sprite {
-            camera.position = pl.position
-        }
         // Called before each frame is rendered
     }
     
