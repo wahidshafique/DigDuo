@@ -78,8 +78,8 @@ class Enemy: SKNode, Animatable{
     private func initializeActions()
     {
         let movementAction = SKAction.repeatForever(
-            .sequence([.rotate(toAngle: self.rotateAngle, duration: TimeInterval(1.0/self.wanderSpeed/CGFloat(2.0)), shortestUnitArc: true),
-           .rotate(toAngle: -self.rotateAngle, duration: TimeInterval(1.0/self.wanderSpeed/CGFloat(2.0)), shortestUnitArc: true)])
+            .sequence([.rotate(toAngle: self.rotateAngle, duration: TimeInterval(1.0/self.wanderSpeed/CGFloat(2.0)), shortestUnitArc: false),
+           .rotate(toAngle: -self.rotateAngle, duration: TimeInterval(1.0/self.wanderSpeed/CGFloat(2.0)), shortestUnitArc: false)])
         
         )
         
