@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Green_Snake_Pixel.png",
+      "filename" : "Enemy.png",
       "scale" : "1x"
     },
     {

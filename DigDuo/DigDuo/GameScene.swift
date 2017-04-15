@@ -58,6 +58,8 @@ class GameScene: SKScene {
         self.addChild((player?.sprite)!)
         cameraSpawn()
         //playerAnimate()
+        var enemy = Enemy()
+        self.addChild(enemy)
         
 
     }
