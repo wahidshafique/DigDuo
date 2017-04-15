@@ -49,11 +49,6 @@ class GameScene: SKScene {
             uiElementNames.append(pause)
         }
         
-        //todo, migrate to world..
-        cam = SKCameraNode()
-        self.camera = cam
-        self.addChild(cam!)
-        
         //Player = new Pl
         player =  Player()
         playerAnim = Animator(animatedObject: player!)
@@ -69,9 +64,44 @@ class GameScene: SKScene {
         playerAnimFrames = walkFrames
         
         self.addChild((player?.sprite)!)
-        
-        
+        cameraSpawn()
         playerAnimate()
+        
+
+    }
+    
+    func cameraSpawn() {
+        //todo, migrate to world..
+        cam = SKCameraNode()
+        self.camera = cam
+        // Constrain the camera to stay a constant distance of 0 points from the player node.
+        let zeroRange = SKRange(constantValue: 0.0)
+        let playerLocationConstraint = SKConstraint.distance(zeroRange, to: (player?.sprite)!)
+        
+        // get the scene size as scaled by `scaleMode = .AspectFill`
+        let scaledSize = CGSize(width: size.width * (camera?.xScale)!, height: size.height * (camera?.yScale)!)
+        
+        // get the frame of the entire level contents
+        let boardNode = background
+        let boardContentRect = boardNode?.calculateAccumulatedFrame()
+        
+        // inset that frame from the edges of the level
+        // inset by `scaledSize / 2 - 100` to show 100 pt of black around the level
+        // (no need for `- 100` if you want zero padding)
+        // use min() to make sure we don't inset too far if the level is small
+        let xInset = min((scaledSize.width / 2) - 100.0, (boardContentRect?.width)! / 2)
+        let yInset = min((scaledSize.height / 2) + 100.0, (boardContentRect?.height)! / 2)
+        let insetContentRect = boardContentRect?.insetBy(dx: xInset, dy: yInset)
+        
+        // use the corners of the inset as the X and Y range of a position constraint
+        let xRange = SKRange(lowerLimit: (insetContentRect?.minX)!, upperLimit: (insetContentRect?.maxX)!)
+        let yRange = SKRange(lowerLimit: (insetContentRect?.minY)!, upperLimit: (insetContentRect?.maxY)!)
+        let levelEdgeConstraint = SKConstraint.positionX(xRange, y: yRange)
+        levelEdgeConstraint.referenceNode = boardNode
+        
+        
+        cam?.constraints = [playerLocationConstraint, levelEdgeConstraint]
+        self.addChild(cam!)
     }
     
     func playerAnimate() {
