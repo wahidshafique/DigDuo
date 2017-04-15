@@ -15,6 +15,7 @@
 		18551E181E7B896500A75168 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18551E171E7B896500A75168 /* Assets.xcassets */; };
 		18551E1B1E7B896500A75168 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18551E191E7B896500A75168 /* LaunchScreen.storyboard */; };
 		1863A5FD1EA16DCF000FFED3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1863A5FC1EA16DCF000FFED3 /* Player.swift */; };
+		1863A6011EA1CFA6000FFED3 /* CollisionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1863A6001EA1CFA6000FFED3 /* CollisionType.swift */; };
 		18B31D9E1E9C27F400D39581 /* Effector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B31D9D1E9C27F400D39581 /* Effector.swift */; };
 		18EFD7A31E7B89D100CD832D /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD7A21E7B89D100CD832D /* Animator.swift */; };
 		18EFD7A61E7B8A8200CD832D /* EasterEggScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD7A51E7B8A8200CD832D /* EasterEggScene.swift */; };
@@ -47,6 +48,7 @@
 		18551E1A1E7B896500A75168 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18551E1C1E7B896500A75168 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1863A5FC1EA16DCF000FFED3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		1863A6001EA1CFA6000FFED3 /* CollisionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionType.swift; sourceTree = "<group>"; };
 		18B31D9D1E9C27F400D39581 /* Effector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Effector.swift; sourceTree = "<group>"; };
 		18EFD7A21E7B89D100CD832D /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		18EFD7A51E7B8A8200CD832D /* EasterEggScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasterEggScene.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				A72F8A201E8B227D00E44268 /* World.swift */,
 				A7E0FA9A1E7C8F4B0089C0DB /* WorldObjects */,
 				1863A5FC1EA16DCF000FFED3 /* Player.swift */,
+				1863A6001EA1CFA6000FFED3 /* CollisionType.swift */,
 			);
 			name = World;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				18EFD7A31E7B89D100CD832D /* Animator.swift in Sources */,
 				A72F8A1F1E8B225900E44268 /* WorldObject.swift in Sources */,
 				18F8176E1E92B8AE005626EC /* Animatable.swift in Sources */,
+				1863A6011EA1CFA6000FFED3 /* CollisionType.swift in Sources */,
 				18551E111E7B896500A75168 /* GameScene.swift in Sources */,
 				A7E0FAB41E7CBF180089C0DB /* Globals.swift in Sources */,
 				18551E131E7B896500A75168 /* GameViewController.swift in Sources */,

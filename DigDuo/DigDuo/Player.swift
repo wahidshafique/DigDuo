@@ -15,13 +15,38 @@ class Player: Animatable{
     }
 
     public var sprite : SKSpriteNode
+    private var playerAnimFrames:[SKTexture]!
+    private let pAtlas = SKTextureAtlas(named: "PlayerAnim")
+    private var walkFrames = [SKTexture]()
     
     init () {
     let texture = SKTexture(imageNamed: "Player")
     sprite = SKSpriteNode(texture: texture, color: .white, size: texture.size())
     sprite.yScale = (sprite.yScale) * -1
-
+    
+    loadAnim()
+    playerAnimate()
         
+    }
+ 
+    func loadAnim() {
+        let numImg = pAtlas.textureNames.count
+    
+        for i in 1 ..< numImg / 2 {
+            let pTextureName = "Moly\(i)"
+            walkFrames.append(pAtlas.textureNamed(pTextureName))
+        }
+        playerAnimFrames = walkFrames
+    }
+    
+    func playerAnimate() {
+        //Ttesting
+        sprite.run(SKAction.repeatForever(
+            SKAction.animate(with: playerAnimFrames,
+                             timePerFrame: 0.1,
+                             resize: false,
+                             restore: true)),
+                           withKey:"walkingPlayer")
     }
     
     required init?(coder aDecoder: NSCoder) {

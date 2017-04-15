@@ -13,7 +13,6 @@ class GameScene: SKScene {
     //TODO temp, abstract it later
     private var playerAnim: Animator?
     private var player :Player?
-    private var playerAnimFrames:[SKTexture]!
     private var cam:SKCameraNode?
     
     private var ui : UserInterface?
@@ -51,21 +50,9 @@ class GameScene: SKScene {
         
         //Player = new Pl
         player =  Player()
-        playerAnim = Animator(animatedObject: player!)
-        let pAtlas = SKTextureAtlas(named: "PlayerAnim")
-        var walkFrames = [SKTexture]()
-        
-        let numImg = pAtlas.textureNames.count
-        
-        for i in 1 ..< numImg / 2 {
-            let pTextureName = "Moly\(i)"
-            walkFrames.append(pAtlas.textureNamed(pTextureName))
-        }
-        playerAnimFrames = walkFrames
-        
         self.addChild((player?.sprite)!)
         cameraSpawn()
-        playerAnimate()
+        //playerAnimate()
         
 
     }
@@ -104,15 +91,7 @@ class GameScene: SKScene {
         self.addChild(cam!)
     }
     
-    func playerAnimate() {
-        //Ttesting
-        player?.sprite.run(SKAction.repeatForever(
-            SKAction.animate(with: playerAnimFrames,
-                                         timePerFrame: 0.1,
-                                         resize: false,
-                                         restore: true)),
-                       withKey:"walkingPlayer")
-    }
+
     
     func touchDown(atPoint pos : CGPoint) {
         player?.sprite.rotateVersus(destPoint: pos)
