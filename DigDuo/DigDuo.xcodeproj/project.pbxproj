@@ -25,6 +25,7 @@
 		A72F8A211E8B227D00E44268 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72F8A201E8B227D00E44268 /* World.swift */; };
 		A72F8A241E8B32C900E44268 /* mymath.c in Sources */ = {isa = PBXBuildFile; fileRef = A72F8A231E8B32C900E44268 /* mymath.c */; };
 		A7D7DA1C1E9EB38A00ACB39C /* LevelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D7DA1B1E9EB38A00ACB39C /* LevelObject.swift */; };
+		A7D7DA201EA2CCF800ACB39C /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D7DA1F1EA2CCF800ACB39C /* Enemy.swift */; };
 		A7E0FAA41E7C90CA0089C0DB /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E0FAA31E7C90CA0089C0DB /* GeneralExtensions.swift */; };
 		A7E0FAAB1E7CA6670089C0DB /* DigduoScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E0FAAA1E7CA6670089C0DB /* DigduoScene.swift */; };
 		A7E0FAAF1E7CBB210089C0DB /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E0FAAE1E7CBB210089C0DB /* MainMenu.swift */; };
@@ -58,6 +59,7 @@
 		A72F8A201E8B227D00E44268 /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		A72F8A231E8B32C900E44268 /* mymath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mymath.c; sourceTree = "<group>"; };
 		A7D7DA1B1E9EB38A00ACB39C /* LevelObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelObject.swift; sourceTree = "<group>"; };
+		A7D7DA1F1EA2CCF800ACB39C /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		A7E0FAA31E7C90CA0089C0DB /* GeneralExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralExtensions.swift; sourceTree = "<group>"; };
 		A7E0FAA61E7CA3E80089C0DB /* DigDuo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DigDuo-Bridging-Header.h"; sourceTree = "<group>"; };
 		A7E0FAA71E7CA3E80089C0DB /* mymath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mymath.h; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 		A7E0FA9F1E7C906C0089C0DB /* World */ = {
 			isa = PBXGroup;
 			children = (
+				A7D7DA1F1EA2CCF800ACB39C /* Enemy.swift */,
 				A72F8A201E8B227D00E44268 /* World.swift */,
 				A7E0FA9A1E7C8F4B0089C0DB /* WorldObjects */,
 				1863A5FC1EA16DCF000FFED3 /* Player.swift */,
@@ -297,6 +300,7 @@
 				A7E0FAA41E7C90CA0089C0DB /* GeneralExtensions.swift in Sources */,
 				1863A5FD1EA16DCF000FFED3 /* Player.swift in Sources */,
 				18EFD7A61E7B8A8200CD832D /* EasterEggScene.swift in Sources */,
+				A7D7DA201EA2CCF800ACB39C /* Enemy.swift in Sources */,
 				A7E0FAB81E7CC1410089C0DB /* TextNode.swift in Sources */,
 				A7E0FAC41E7CEDC90089C0DB /* GameoverScene.swift in Sources */,
 				18F8176C1E929AF1005626EC /* SpriteSheet.swift in Sources */,
