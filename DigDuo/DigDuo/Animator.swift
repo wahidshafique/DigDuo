@@ -108,6 +108,7 @@ class Animator
         }
     }
     
+    
     func pauseAnimation() {
         if let anim = sprite.action(forKey: runningAnim)
         {

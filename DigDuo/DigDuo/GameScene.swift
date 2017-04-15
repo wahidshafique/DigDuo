@@ -11,7 +11,9 @@ import GameplayKit
 
 class GameScene: SKScene {
     //TODO temp, abstract it later
+    private var playerAnim: Animator?
     private var player :Player?
+    private var playerAnimFrames:[SKTexture]!
     private var cam:SKCameraNode?
     
     private var ui : UserInterface?
@@ -54,20 +56,43 @@ class GameScene: SKScene {
         
         //Player = new Pl
         player =  Player()
-        player?.yScale = (player?.yScale)! * -1
-        self.addChild(player!)
+        playerAnim = Animator(animatedObject: player!)
+        let pAtlas = SKTextureAtlas(named: "PlayerAnim")
+        var walkFrames = [SKTexture]()
         
+        let numImg = pAtlas.textureNames.count
+        
+        for i in 1 ..< numImg / 2 {
+            let pTextureName = "Moly\(i)"
+            walkFrames.append(pAtlas.textureNamed(pTextureName))
+        }
+        playerAnimFrames = walkFrames
+        
+        self.addChild((player?.sprite)!)
+        
+        
+        playerAnimate()
+    }
+    
+    func playerAnimate() {
+        //Ttesting
+        player?.sprite.run(SKAction.repeatForever(
+            SKAction.animate(with: playerAnimFrames,
+                                         timePerFrame: 0.1,
+                                         resize: false,
+                                         restore: true)),
+                       withKey:"walkingPlayer")
     }
     
     func touchDown(atPoint pos : CGPoint) {
-        player?.rotateVersus(destPoint: pos)
-        player?.run(SKAction.move(to: pos, duration: 1.0))
+        player?.sprite.rotateVersus(destPoint: pos)
+        player?.sprite.run(SKAction.move(to: pos, duration: 1.0))
         ui!.onTouchDown(point: pos)
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-        player?.rotateVersus(destPoint: pos)
-        player?.run(SKAction.move(to: pos, duration: 1.0))
+        player?.sprite.rotateVersus(destPoint: pos)
+        player?.sprite.run(SKAction.move(to: pos, duration: 1.0))
         // TODO: notify ui
         // TODO: notify game
     }
@@ -80,8 +105,8 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let location = touches.first?.location(in: self) {
-            player?.rotateVersus(destPoint: location)
-            player?.run(SKAction.move(to: location, duration: 1.0))
+            player?.sprite.rotateVersus(destPoint: location)
+            player?.sprite.run(SKAction.move(to: location, duration: 1.0))
         }
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
@@ -101,7 +126,7 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
-        if let camera = cam, let pl = player {
+        if let camera = cam, let pl = player?.sprite {
             camera.position = pl.position
         }
         // Called before each frame is rendered

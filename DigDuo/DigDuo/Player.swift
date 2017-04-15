@@ -9,10 +9,18 @@
 import Foundation
 import SpriteKit
 
-class Player:SKSpriteNode{
+class Player: Animatable{
+    func animationComplete(animationName: String) {
+        print("anim complete")
+    }
+
+    public var sprite : SKSpriteNode
+    
     init () {
     let texture = SKTexture(imageNamed: "Player")
-    super.init(texture: texture, color: .white, size: texture.size())
+    sprite = SKSpriteNode(texture: texture, color: .white, size: texture.size())
+    sprite.yScale = (sprite.yScale) * -1
+
         
     }
     
