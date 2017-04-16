@@ -11,7 +11,7 @@
 import SpriteKit
 import GameplayKit
 
-class ZombieIsSafe: GKState {
+class IsSafe: GKState {
     unowned let scene: GameScene
     var sprite: SKSpriteNode
     

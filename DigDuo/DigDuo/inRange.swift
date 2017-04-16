@@ -31,6 +31,6 @@ class inRange: GKState {
     
     /* determines valid states for transitioning */
     override func isValidNextState(_ stateClass: AnyClass) -> Bool {
-        return stateClass is isSafe.Type
+        return stateClass is IsSafe.Type
     }
 }
