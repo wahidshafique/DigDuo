@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		180898FD1E9C2F75006D2AF7 /* ARCADECLASSIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 180898FC1E9C2F43006D2AF7 /* ARCADECLASSIC.TTF */; };
+		1823C45D1EA314F300D13D72 /* inRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823C45C1EA314F300D13D72 /* inRange.swift */; };
+		1823C45F1EA3154700D13D72 /* isSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823C45E1EA3154700D13D72 /* isSafe.swift */; };
 		18551E0B1E7B896500A75168 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18551E0A1E7B896500A75168 /* AppDelegate.swift */; };
 		18551E111E7B896500A75168 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18551E101E7B896500A75168 /* GameScene.swift */; };
 		18551E131E7B896500A75168 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18551E121E7B896500A75168 /* GameViewController.swift */; };
@@ -21,6 +23,10 @@
 		18EFD7A61E7B8A8200CD832D /* EasterEggScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD7A51E7B8A8200CD832D /* EasterEggScene.swift */; };
 		18F8176C1E929AF1005626EC /* SpriteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8176B1E929AF1005626EC /* SpriteSheet.swift */; };
 		18F8176E1E92B8AE005626EC /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8176D1E92B8AE005626EC /* Animatable.swift */; };
+		18FAC8A61EA305CC002FE99C /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FAC8A51EA305CC002FE99C /* PlayerEntity.swift */; };
+		18FAC8A81EA30639002FE99C /* VisualComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FAC8A71EA30639002FE99C /* VisualComponent.swift */; };
+		18FAC8AA1EA306B7002FE99C /* MoveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FAC8A91EA306B7002FE99C /* MoveComponent.swift */; };
+		18FAC8AE1EA30848002FE99C /* HealthComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FAC8AD1EA30848002FE99C /* HealthComponent.swift */; };
 		A72F8A1F1E8B225900E44268 /* WorldObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72F8A1E1E8B225900E44268 /* WorldObject.swift */; };
 		A72F8A211E8B227D00E44268 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72F8A201E8B227D00E44268 /* World.swift */; };
 		A72F8A241E8B32C900E44268 /* mymath.c in Sources */ = {isa = PBXBuildFile; fileRef = A72F8A231E8B32C900E44268 /* mymath.c */; };
@@ -40,6 +46,8 @@
 
 /* Begin PBXFileReference section */
 		180898FC1E9C2F43006D2AF7 /* ARCADECLASSIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARCADECLASSIC.TTF; sourceTree = "<group>"; };
+		1823C45C1EA314F300D13D72 /* inRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = inRange.swift; sourceTree = "<group>"; };
+		1823C45E1EA3154700D13D72 /* isSafe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = isSafe.swift; sourceTree = "<group>"; };
 		18551E071E7B896500A75168 /* DigDuo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigDuo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18551E0A1E7B896500A75168 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18551E101E7B896500A75168 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -55,6 +63,10 @@
 		18EFD7A51E7B8A8200CD832D /* EasterEggScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasterEggScene.swift; sourceTree = "<group>"; };
 		18F8176B1E929AF1005626EC /* SpriteSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSheet.swift; sourceTree = "<group>"; };
 		18F8176D1E92B8AE005626EC /* Animatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
+		18FAC8A51EA305CC002FE99C /* PlayerEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
+		18FAC8A71EA30639002FE99C /* VisualComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualComponent.swift; sourceTree = "<group>"; };
+		18FAC8A91EA306B7002FE99C /* MoveComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveComponent.swift; sourceTree = "<group>"; };
+		18FAC8AD1EA30848002FE99C /* HealthComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthComponent.swift; sourceTree = "<group>"; };
 		A72F8A1E1E8B225900E44268 /* WorldObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldObject.swift; sourceTree = "<group>"; };
 		A72F8A201E8B227D00E44268 /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		A72F8A231E8B32C900E44268 /* mymath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mymath.c; sourceTree = "<group>"; };
@@ -101,6 +113,15 @@
 			name = font;
 			sourceTree = "<group>";
 		};
+		1823C45B1EA314D700D13D72 /* States */ = {
+			isa = PBXGroup;
+			children = (
+				1823C45C1EA314F300D13D72 /* inRange.swift */,
+				1823C45E1EA3154700D13D72 /* isSafe.swift */,
+			);
+			name = States;
+			sourceTree = "<group>";
+		};
 		18551DFE1E7B896500A75168 = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +141,9 @@
 		18551E091E7B896500A75168 /* DigDuo */ = {
 			isa = PBXGroup;
 			children = (
+				1823C45B1EA314D700D13D72 /* States */,
+				18FAC8A21EA3000C002FE99C /* Components */,
+				18FAC8A11EA2FFFF002FE99C /* Entities */,
 				180898FA1E9C2F29006D2AF7 /* Resources */,
 				A72F8A221E8B242C00E44268 /* Animation */,
 				A7E0FAB01E7CBE980089C0DB /* SimpleUI */,
@@ -147,6 +171,24 @@
 				A7E0FAAE1E7CBB210089C0DB /* MainMenu.swift */,
 			);
 			name = Scenes;
+			sourceTree = "<group>";
+		};
+		18FAC8A11EA2FFFF002FE99C /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				18FAC8A51EA305CC002FE99C /* PlayerEntity.swift */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		18FAC8A21EA3000C002FE99C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				18FAC8A71EA30639002FE99C /* VisualComponent.swift */,
+				18FAC8A91EA306B7002FE99C /* MoveComponent.swift */,
+				18FAC8AD1EA30848002FE99C /* HealthComponent.swift */,
+			);
+			name = Components;
 			sourceTree = "<group>";
 		};
 		A72F8A221E8B242C00E44268 /* Animation */ = {
@@ -294,15 +336,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18FAC8AA1EA306B7002FE99C /* MoveComponent.swift in Sources */,
 				A72F8A211E8B227D00E44268 /* World.swift in Sources */,
 				18B31D9E1E9C27F400D39581 /* Effector.swift in Sources */,
 				A7E0FAAF1E7CBB210089C0DB /* MainMenu.swift in Sources */,
 				A7E0FAA41E7C90CA0089C0DB /* GeneralExtensions.swift in Sources */,
+				1823C45F1EA3154700D13D72 /* isSafe.swift in Sources */,
 				1863A5FD1EA16DCF000FFED3 /* Player.swift in Sources */,
+				18FAC8AE1EA30848002FE99C /* HealthComponent.swift in Sources */,
 				18EFD7A61E7B8A8200CD832D /* EasterEggScene.swift in Sources */,
+				1823C45D1EA314F300D13D72 /* inRange.swift in Sources */,
 				A7D7DA221EA2CD8F00ACB39C /* Enemy.swift in Sources */,
 				A7E0FAB81E7CC1410089C0DB /* TextNode.swift in Sources */,
 				A7E0FAC41E7CEDC90089C0DB /* GameoverScene.swift in Sources */,
+				18FAC8A81EA30639002FE99C /* VisualComponent.swift in Sources */,
 				18F8176C1E929AF1005626EC /* SpriteSheet.swift in Sources */,
 				18EFD7A31E7B89D100CD832D /* Animator.swift in Sources */,
 				A72F8A1F1E8B225900E44268 /* WorldObject.swift in Sources */,
@@ -311,6 +358,7 @@
 				18551E111E7B896500A75168 /* GameScene.swift in Sources */,
 				A7E0FAB41E7CBF180089C0DB /* Globals.swift in Sources */,
 				18551E131E7B896500A75168 /* GameViewController.swift in Sources */,
+				18FAC8A61EA305CC002FE99C /* PlayerEntity.swift in Sources */,
 				18551E0B1E7B896500A75168 /* AppDelegate.swift in Sources */,
 				A7E0FAC21E7CEDBC0089C0DB /* Leaderboard.swift in Sources */,
 				A72F8A241E8B32C900E44268 /* mymath.c in Sources */,

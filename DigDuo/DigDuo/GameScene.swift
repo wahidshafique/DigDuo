@@ -9,10 +9,19 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
+    
+    struct PhysicsCategory {
+        static let None:    UInt32 = 0
+        static let Mole:   UInt32 = 0b1
+        static let Enemy:  UInt32 = 0b10
+        static let Collectable:    UInt32 = 0b100
+    }
+    
     //TODO temp, abstract it later
     private var playerAnim: Animator?
-    private var player :Player?
+    //private var player :Player?
+    private var player: PlayerEntity?
     private var cam:SKCameraNode?
     
     private var ui : UserInterface?
@@ -50,24 +59,67 @@ class GameScene: SKScene {
         if let pause = pauseButton {
             uiElementNames.append(pause)
         }
-        //addChild(ui!)
-
-        
-        //Player = new Pl
-        player =  Player()
-        self.addChild((player?.sprite)!)
+        createPlayer(point: CGPoint(x: 0, y: 0))
+        animatePlayer(sprite: (player?.component(ofType: VisualComponent.self)?.sprite)!)
         cameraSpawn()
-        
-
     }
     
+    func createPlayer(point: CGPoint) {
+        player = PlayerEntity(pos: CGPoint(x: point.x, y: point.y))
+        //create sprite
+        let texture = SKTexture(imageNamed: "Player")
+        let playerSprite = SKSpriteNode(texture: texture, color: .white, size: texture.size())
+        playerSprite.yScale = (playerSprite.yScale) * -1
+        playerSprite.position = point
+        
+        let radius = CGFloat(playerSprite.size.width / 2)
+        let boundary = SKShapeNode(circleOfRadius: radius)
+        boundary.strokeColor = UIColor.gray
+        playerSprite.addChild(boundary)
+        
+        // add physics properties
+        playerSprite.physicsBody = SKPhysicsBody(circleOfRadius: radius)
+        playerSprite.physicsBody!.isDynamic = false
+        
+        let visualComponent = VisualComponent(scene: self, sprite: playerSprite)
+        player?.addComponent(visualComponent)
+        
+        let moveComponent = MoveComponent(scene:self, sprite: playerSprite)
+        player?.addComponent(moveComponent)
+        
+        //add to scene
+        addChild(visualComponent.sprite)
+    }
+    
+    func animatePlayer(sprite: SKSpriteNode) {
+         var playerAnimFrames:[SKTexture]!
+         let pAtlas = SKTextureAtlas(named: "PlayerAnim")
+         var walkFrames = [SKTexture]()
+        //TODO, ADD EACH STATE TO THE STATE MACHINE LATER
+        let numImg = pAtlas.textureNames.count
+        
+        for i in 1 ..< numImg / 2 {
+            let pTextureName = "Moly\(i)"
+            walkFrames.append(pAtlas.textureNamed(pTextureName))
+        }
+        playerAnimFrames = walkFrames
+        sprite.run(SKAction.repeatForever(
+            SKAction.animate(with: playerAnimFrames,
+                             timePerFrame: 0.1,
+                             resize: false,
+                             restore: true)),
+                   withKey:"walkingPlayer")
+    }
+
     func cameraSpawn() {
+        let p = player?.component(ofType: VisualComponent.self)?.sprite
         //todo, migrate to world..
         cam = SKCameraNode()
         self.camera = cam
+        camera?.setScale(2.0)
         // Constrain the camera to stay a constant distance of 0 points from the player node.
         let zeroRange = SKRange(constantValue: 0.0)
-        let playerLocationConstraint = SKConstraint.distance(zeroRange, to: (player?.sprite)!)
+        let playerLocationConstraint = SKConstraint.distance(zeroRange, to: p!)
         
         // get the scene size as scaled by `scaleMode = .AspectFill`
         let scaledSize = CGSize(width: size.width * (camera?.xScale)!, height: size.height * (camera?.yScale)!)
@@ -99,14 +151,12 @@ class GameScene: SKScene {
 
     
     func touchDown(atPoint pos : CGPoint) {
-        player?.sprite.rotateVersus(destPoint: pos)
-        player?.sprite.run(SKAction.move(to: pos, duration: 1.0))
+        player?.component(ofType: MoveComponent.self)?.moveToPoint(pos, duration: 1)
         ui!.onTouchDown(point: pos)
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-        player?.sprite.rotateVersus(destPoint: pos)
-        player?.sprite.run(SKAction.move(to: pos, duration: 1.0))
+        player?.component(ofType: MoveComponent.self)?.moveToPoint(pos, duration: 1)
         // TODO: notify ui
         // TODO: notify game
     }
@@ -118,10 +168,6 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let location = touches.first?.location(in: self) {
-            player?.sprite.rotateVersus(destPoint: location)
-            player?.sprite.run(SKAction.move(to: location, duration: 1.0))
-        }
         for t in touches { self.touchDown(atPoint: t.location(in: self)) }
     }
     
