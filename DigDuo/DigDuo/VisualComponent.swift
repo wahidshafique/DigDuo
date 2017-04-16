@@ -22,7 +22,7 @@ class VisualComponent: GKComponent {
     init(scene: SKScene, sprite: SKSpriteNode) {
         self.scene = scene as! GameScene
         self.sprite = sprite
-        
+        self.scene.addChild(sprite)
         /* init the game state machine with the available states */
 //        self.gameState = GKStateMachine(states:[ EnemyInRange(scene: scene, sprite: sprite),
 //                                                 EnemyIsSafe(scene: scene, sprite: sprite) ])

@@ -25,7 +25,7 @@ class GameoverScene: SKScene {
         addChild(background!)
         background!.position += CGVector(dx: dimensions.width/2.0, dy: dimensions.height/2.0)
         
-        addChild(ui!)
+        //addChild(ui!)
         
         let textureButton = ui?.atlas.textureNamed("blue_button05")
         

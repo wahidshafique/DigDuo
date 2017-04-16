@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		180898FD1E9C2F75006D2AF7 /* ARCADECLASSIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 180898FC1E9C2F43006D2AF7 /* ARCADECLASSIC.TTF */; };
+		181706711EA3ECD100241998 /* CameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181706701EA3ECD100241998 /* CameraComponent.swift */; };
 		1823C45D1EA314F300D13D72 /* inRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823C45C1EA314F300D13D72 /* inRange.swift */; };
 		1823C45F1EA3154700D13D72 /* isSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823C45E1EA3154700D13D72 /* isSafe.swift */; };
 		18551E0B1E7B896500A75168 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18551E0A1E7B896500A75168 /* AppDelegate.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		180898FC1E9C2F43006D2AF7 /* ARCADECLASSIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARCADECLASSIC.TTF; sourceTree = "<group>"; };
+		181706701EA3ECD100241998 /* CameraComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraComponent.swift; sourceTree = "<group>"; };
 		1823C45C1EA314F300D13D72 /* inRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = inRange.swift; sourceTree = "<group>"; };
 		1823C45E1EA3154700D13D72 /* isSafe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = isSafe.swift; sourceTree = "<group>"; };
 		18551E071E7B896500A75168 /* DigDuo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigDuo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,6 +189,7 @@
 				18FAC8A71EA30639002FE99C /* VisualComponent.swift */,
 				18FAC8A91EA306B7002FE99C /* MoveComponent.swift */,
 				18FAC8AD1EA30848002FE99C /* HealthComponent.swift */,
+				181706701EA3ECD100241998 /* CameraComponent.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				1823C45D1EA314F300D13D72 /* inRange.swift in Sources */,
 				A7D7DA221EA2CD8F00ACB39C /* Enemy.swift in Sources */,
 				A7E0FAB81E7CC1410089C0DB /* TextNode.swift in Sources */,
+				181706711EA3ECD100241998 /* CameraComponent.swift in Sources */,
 				A7E0FAC41E7CEDC90089C0DB /* GameoverScene.swift in Sources */,
 				18FAC8A81EA30639002FE99C /* VisualComponent.swift in Sources */,
 				18F8176C1E929AF1005626EC /* SpriteSheet.swift in Sources */,

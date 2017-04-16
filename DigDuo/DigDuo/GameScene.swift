@@ -22,11 +22,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var playerAnim: Animator?
     //private var player :Player?
     private var player: PlayerEntity?
-    private var cam:SKCameraNode?
     
+    private var cam: SKCameraNode?
     private var ui : UserInterface?
     private var uiElementNames = [String]()
-    private var background: SKSpriteNode?
+    
+    public var background: SKSpriteNode?
     private var npc: SKSpriteNode?
     
     override func didMove(to view: SKView) {
@@ -61,7 +62,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         createPlayer(point: CGPoint(x: 0, y: 0))
         animatePlayer(sprite: (player?.component(ofType: VisualComponent.self)?.sprite)!)
-        cameraSpawn()
+        //cameraSpawn()
     }
     
     func createPlayer(point: CGPoint) {
@@ -81,14 +82,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerSprite.physicsBody = SKPhysicsBody(circleOfRadius: radius)
         playerSprite.physicsBody!.isDynamic = false
         
-        let visualComponent = VisualComponent(scene: self, sprite: playerSprite)
-        player?.addComponent(visualComponent)
-        
-        let moveComponent = MoveComponent(scene:self, sprite: playerSprite)
-        player?.addComponent(moveComponent)
-        
-        //add to scene
-        addChild(visualComponent.sprite)
+        let visComp = VisualComponent(scene: self, sprite: playerSprite)
+        player?.addComponent(visComp)
+    
+        player?.addComponent(MoveComponent(scene:self, sprite: playerSprite))
+        cameraSpawn()
+        //player?.addComponent(CameraComponent(scene: self, sprite: playerSprite))
     }
     
     func animatePlayer(sprite: SKSpriteNode) {
@@ -147,8 +146,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(cam!)
         cam?.addChild(ui!)
     }
-    
-
     
     func touchDown(atPoint pos : CGPoint) {
         player?.component(ofType: MoveComponent.self)?.moveToPoint(pos, duration: 1)
