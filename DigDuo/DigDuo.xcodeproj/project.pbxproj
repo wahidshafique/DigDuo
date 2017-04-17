@@ -26,6 +26,7 @@
 		18551E1B1E7B896500A75168 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18551E191E7B896500A75168 /* LaunchScreen.storyboard */; };
 		1863A5FD1EA16DCF000FFED3 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1863A5FC1EA16DCF000FFED3 /* Player.swift */; };
 		1863A6011EA1CFA6000FFED3 /* CollisionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1863A6001EA1CFA6000FFED3 /* CollisionType.swift */; };
+		18645DEE1EA488EC00E6062E /* BrokenPlatform.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18645DED1EA488EC00E6062E /* BrokenPlatform.sks */; };
 		18B31D9E1E9C27F400D39581 /* Effector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B31D9D1E9C27F400D39581 /* Effector.swift */; };
 		18EFD7A31E7B89D100CD832D /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD7A21E7B89D100CD832D /* Animator.swift */; };
 		18EFD7A61E7B8A8200CD832D /* EasterEggScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFD7A51E7B8A8200CD832D /* EasterEggScene.swift */; };
@@ -74,6 +75,7 @@
 		18551E1C1E7B896500A75168 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1863A5FC1EA16DCF000FFED3 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		1863A6001EA1CFA6000FFED3 /* CollisionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionType.swift; sourceTree = "<group>"; };
+		18645DED1EA488EC00E6062E /* BrokenPlatform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BrokenPlatform.sks; sourceTree = "<group>"; };
 		18B31D9D1E9C27F400D39581 /* Effector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Effector.swift; sourceTree = "<group>"; };
 		18EFD7A21E7B89D100CD832D /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		18EFD7A51E7B8A8200CD832D /* EasterEggScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasterEggScene.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 		A7E0FAA21E7C90B30089C0DB /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				18645DED1EA488EC00E6062E /* BrokenPlatform.sks */,
 				1817067F1EA4850C00241998 /* BallTrail.sks */,
 				A7E0FAA51E7CA3C00089C0DB /* CStuff */,
 				A7E0FAA31E7C90CA0089C0DB /* GeneralExtensions.swift */,
@@ -371,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18551E161E7B896500A75168 /* Main.storyboard in Resources */,
+				18645DEE1EA488EC00E6062E /* BrokenPlatform.sks in Resources */,
 				181706801EA4850C00241998 /* BallTrail.sks in Resources */,
 				18551E181E7B896500A75168 /* Assets.xcassets in Resources */,
 				18551E1B1E7B896500A75168 /* LaunchScreen.storyboard in Resources */,

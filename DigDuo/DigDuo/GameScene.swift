@@ -47,6 +47,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var playerAnim: Animator?
     //private var player :Player?
     private var player: PlayerEntity?
+    private var enem: Enemy?
     
     private var cam: SKCameraNode?
     private var ui : UserInterface?
@@ -64,7 +65,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(gameMessage)
         self.name = "Main Scene"
         super.didMove(to: view)
-        self.backgroundColor = UIColor.brown
+        self.backgroundColor = UIColor.init(red: CGFloat(18.0/255.0), green: CGFloat(58.0/255.0), blue: CGFloat(103.0/255.0), alpha: CGFloat(1.0))
         let dimensions = getDimensionsInScreen()
         
         background = SKSpriteNode(texture: SKTexture(imageNamed: "Background"), color: .white, size: CGSize(width: 1920, height: 4320))
@@ -76,11 +77,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //addChild(ui!)
         createPlayer(point: CGPoint(x: 0, y: 0))
+        createEnemy(point: CGPoint(x: 20, y: 45))
         //animatePlayer(sprite: (player?.component(ofType: VisualComponent.self)?.sprite)!)
         cameraSpawn()
         
         gameState.enter(WaitForTap.self)
     }
+    
+    func createEnemy(point: CGPoint) {
+        enem = Enemy()
+        self.addChild(enem!)
+    }
+    
     
     func createPlayer(point: CGPoint) {
         player = PlayerEntity(pos: CGPoint(x: point.x, y: point.y))
@@ -222,6 +230,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
+        gameState.update(deltaTime: currentTime)
+        enem?.update(deltaTime: CGFloat(currentTime))
         // Called before each frame is rendered
     }
     
