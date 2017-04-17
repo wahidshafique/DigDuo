@@ -22,7 +22,7 @@ class Scorer {
         var highScoreList = [Int](repeating: 0, count: 5)
         
         for i in 0...highScoreList.count - 1 {
-            if ((userdefs.value(forKey: "Leader\(i)")) == nil) {
+            if (!isKeyPresentInUserDefaults(key: "Leader\(i)")) {
                 userdefs.set(0, forKey: "Leader\(i)")
             }
             highScoreList.append(userdefs.value(forKey: "Leader\(i)") as! Int)
@@ -41,5 +41,9 @@ class Scorer {
         }
         
         return highScoreList
+    }
+    
+    func isKeyPresentInUserDefaults(key: String) -> Bool {
+        return UserDefaults.standard.integer(forKey: key) > 0
     }
 }

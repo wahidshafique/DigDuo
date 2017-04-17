@@ -12,6 +12,10 @@
 		181706731EA43F3B00241998 /* MovingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181706721EA43F3B00241998 /* MovingState.swift */; };
 		181706751EA4404600241998 /* StaticState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181706741EA4404600241998 /* StaticState.swift */; };
 		181706771EA4671D00241998 /* Scorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181706761EA4671D00241998 /* Scorer.swift */; };
+		1817067A1EA4804900241998 /* WaitForTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181706791EA4804900241998 /* WaitForTap.swift */; };
+		1817067C1EA482DF00241998 /* Playing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1817067B1EA482DF00241998 /* Playing.swift */; };
+		1817067E1EA4834D00241998 /* Gameover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1817067D1EA4834D00241998 /* Gameover.swift */; };
+		181706801EA4850C00241998 /* BallTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1817067F1EA4850C00241998 /* BallTrail.sks */; };
 		1823C45D1EA314F300D13D72 /* InRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823C45C1EA314F300D13D72 /* InRange.swift */; };
 		1823C45F1EA3154700D13D72 /* IsSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823C45E1EA3154700D13D72 /* IsSafe.swift */; };
 		18551E0B1E7B896500A75168 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18551E0A1E7B896500A75168 /* AppDelegate.swift */; };
@@ -54,6 +58,10 @@
 		181706721EA43F3B00241998 /* MovingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovingState.swift; sourceTree = "<group>"; };
 		181706741EA4404600241998 /* StaticState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticState.swift; sourceTree = "<group>"; };
 		181706761EA4671D00241998 /* Scorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scorer.swift; sourceTree = "<group>"; };
+		181706791EA4804900241998 /* WaitForTap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitForTap.swift; sourceTree = "<group>"; };
+		1817067B1EA482DF00241998 /* Playing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playing.swift; sourceTree = "<group>"; };
+		1817067D1EA4834D00241998 /* Gameover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gameover.swift; sourceTree = "<group>"; };
+		1817067F1EA4850C00241998 /* BallTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BallTrail.sks; sourceTree = "<group>"; };
 		1823C45C1EA314F300D13D72 /* InRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InRange.swift; sourceTree = "<group>"; };
 		1823C45E1EA3154700D13D72 /* IsSafe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsSafe.swift; sourceTree = "<group>"; };
 		18551E071E7B896500A75168 /* DigDuo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigDuo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,9 +129,20 @@
 			name = font;
 			sourceTree = "<group>";
 		};
+		181706781EA47FD300241998 /* GameStates */ = {
+			isa = PBXGroup;
+			children = (
+				181706791EA4804900241998 /* WaitForTap.swift */,
+				1817067B1EA482DF00241998 /* Playing.swift */,
+				1817067D1EA4834D00241998 /* Gameover.swift */,
+			);
+			name = GameStates;
+			sourceTree = "<group>";
+		};
 		1823C45B1EA314D700D13D72 /* States */ = {
 			isa = PBXGroup;
 			children = (
+				181706781EA47FD300241998 /* GameStates */,
 				A7D51B061EA4609900F89AE5 /* PlayerStates */,
 				A7D51B051EA4609200F89AE5 /* EnemyStates */,
 			);
@@ -252,6 +271,7 @@
 		A7E0FAA21E7C90B30089C0DB /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				1817067F1EA4850C00241998 /* BallTrail.sks */,
 				A7E0FAA51E7CA3C00089C0DB /* CStuff */,
 				A7E0FAA31E7C90CA0089C0DB /* GeneralExtensions.swift */,
 				A7E0FAB31E7CBF180089C0DB /* Globals.swift */,
@@ -351,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18551E161E7B896500A75168 /* Main.storyboard in Resources */,
+				181706801EA4850C00241998 /* BallTrail.sks in Resources */,
 				18551E181E7B896500A75168 /* Assets.xcassets in Resources */,
 				18551E1B1E7B896500A75168 /* LaunchScreen.storyboard in Resources */,
 				180898FD1E9C2F75006D2AF7 /* ARCADECLASSIC.TTF in Resources */,
@@ -368,15 +389,18 @@
 				A72F8A211E8B227D00E44268 /* World.swift in Sources */,
 				18B31D9E1E9C27F400D39581 /* Effector.swift in Sources */,
 				A7E0FAAF1E7CBB210089C0DB /* MainMenu.swift in Sources */,
+				1817067A1EA4804900241998 /* WaitForTap.swift in Sources */,
 				A7E0FAA41E7C90CA0089C0DB /* GeneralExtensions.swift in Sources */,
 				1823C45F1EA3154700D13D72 /* IsSafe.swift in Sources */,
 				1863A5FD1EA16DCF000FFED3 /* Player.swift in Sources */,
 				181706751EA4404600241998 /* StaticState.swift in Sources */,
+				1817067E1EA4834D00241998 /* Gameover.swift in Sources */,
 				18FAC8AE1EA30848002FE99C /* HealthComponent.swift in Sources */,
 				18EFD7A61E7B8A8200CD832D /* EasterEggScene.swift in Sources */,
 				1823C45D1EA314F300D13D72 /* InRange.swift in Sources */,
 				A7D7DA221EA2CD8F00ACB39C /* Enemy.swift in Sources */,
 				181706771EA4671D00241998 /* Scorer.swift in Sources */,
+				1817067C1EA482DF00241998 /* Playing.swift in Sources */,
 				A7E0FAB81E7CC1410089C0DB /* TextNode.swift in Sources */,
 				181706711EA3ECD100241998 /* CameraComponent.swift in Sources */,
 				A7E0FAC41E7CEDC90089C0DB /* GameoverScene.swift in Sources */,

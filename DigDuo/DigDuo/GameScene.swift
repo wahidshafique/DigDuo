@@ -9,6 +9,8 @@
 import SpriteKit
 import GameplayKit
 
+let GameMessageName = "gameMessage"
+
 struct PhysicsCategory {
     static let None:    UInt32 = 0
     static let Mole:   UInt32 = 0b1
@@ -17,6 +19,30 @@ struct PhysicsCategory {
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    lazy var gameState: GKStateMachine = GKStateMachine(states: [
+        WaitForTap(scene: self),
+        Playing(scene: self),
+        GameOver(scene: self)])
+    
+    //Playing(scene: self),
+    //    GameOver(scene: self)])
+    
+    //STATES
+    
+    var gameWon : Bool = false {
+        didSet {
+            let gameOver = childNode(withName: GameMessageName) as! SKSpriteNode
+            let textureName = gameWon ? "YouWon" : "GameOver"
+            let texture = SKTexture(imageNamed: textureName)
+            let actionSequence = SKAction.sequence([SKAction.setTexture(texture),
+                                                    SKAction.scale(to: 1.0, duration: 0.25)])
+            
+            gameOver.run(actionSequence)
+        }
+    }
+        
+        //END STATES
+    
     //TODO temp, abstract it later
     private var playerAnim: Animator?
     //private var player :Player?
@@ -30,6 +56,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var npc: SKSpriteNode?
     
     override func didMove(to view: SKView) {
+        let gameMessage = SKSpriteNode(imageNamed: "TapToPlay")
+        gameMessage.name = GameMessageName
+        gameMessage.position = CGPoint(x: frame.midX, y: frame.midY)
+        gameMessage.zPosition = 4
+        gameMessage.setScale(0.0)
+        addChild(gameMessage)
         self.name = "Main Scene"
         super.didMove(to: view)
         self.backgroundColor = UIColor.brown
@@ -73,6 +105,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //Not working as a component for some reason
         //let camComp = CameraComponent(scene: self, sprite: playerSprite)
         //player?.addComponent(camComp)
+        
+        let trailNode = SKNode()
+        trailNode.zPosition = 1
+        addChild(trailNode)
+        let trail = SKEmitterNode(fileNamed: "BallTrail")!
+        trail.targetNode = trailNode
+        playerSprite.addChild(trail)
     }
 
     func cameraSpawn() {
@@ -96,7 +135,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             uiElementNames.append(pause)
         }
         
-        cam?.addChild(ui!)
+        //TODO, FIX THE UI
+        //cam?.addChild(ui!)
         
         // Constrain the camera to stay a constant distance of 0 points from the player node.
         let zeroRange = SKRange(constantValue: 0.0)
