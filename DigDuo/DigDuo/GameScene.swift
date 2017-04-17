@@ -40,7 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background?.zPosition = 0
         background?.colorBlendFactor = 1.0
         addChild(background!)
-        background!.position += CGVector(dx: dimensions.width/4.0, dy: dimensions.height/2.0)
+        //background!.position += CGVector(dx: dimensions.width/4.0, dy: dimensions.height/2.0)
         
         //addChild(ui!)
         createPlayer(point: CGPoint(x: 0, y: 0))
@@ -113,8 +113,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // inset by `scaledSize / 2 - 100` to show 100 pt of black around the level
         // (no need for `- 100` if you want zero padding)
         // use min() to make sure we don't inset too far if the level is small
-        let xInset = min((scaledSize.width / 2) - 100.0, (boardContentRect?.width)! / 2)
-        let yInset = min((scaledSize.height / 2) - 100.0, (boardContentRect?.height)! - (boardNode?.size.height)!)
+        let xInset = min((scaledSize.width / 2), (boardContentRect?.width)! / 2)
+        let yInset = min((scaledSize.height / 2) + 100.0, (boardContentRect?.height)! - (boardNode?.size.height)!)
         let insetContentRect = boardContentRect?.insetBy(dx: xInset, dy: yInset)
         
         // use the corners of the inset as the X and Y range of a position constraint
