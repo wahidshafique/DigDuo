@@ -78,6 +78,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createPlayer(point: CGPoint(x: 0, y: 0))
         //animatePlayer(sprite: (player?.component(ofType: VisualComponent.self)?.sprite)!)
         cameraSpawn()
+        
+        gameState.enter(WaitForTap.self)
     }
     
     func createPlayer(point: CGPoint) {
@@ -169,13 +171,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func touchDown(atPoint pos : CGPoint) {
-        player?.component(ofType: MoveComponent.self)?.moveToPoint(pos, duration: 1)
+        //player?.component(ofType: MoveComponent.self)?.moveToPoint(pos, duration: 1)
         
         ui!.onTouchDown(point: pos)
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-        player?.component(ofType: MoveComponent.self)?.moveToPoint(pos, duration: 1)
+        switch gameState.currentState {
+        case is WaitForTap:
+            gameState.enter(Playing.self)
+            
+        case is Playing:
+            player?.component(ofType: MoveComponent.self)?.moveToPoint(pos, duration: 1)
+            
+        case is GameOver:
+            let newScene = GameScene(fileNamed:"GameScene")
+            newScene!.scaleMode = .aspectFit
+            let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+            self.view?.presentScene(newScene!, transition: reveal)
+        default:
+            break
+        }
+    
         // TODO: notify ui
         // TODO: notify game
     }
