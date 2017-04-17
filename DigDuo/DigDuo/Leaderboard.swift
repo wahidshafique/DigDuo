@@ -18,7 +18,6 @@ class Leaderboard: SKScene {
     
     override func didMove(to view: SKView) {
         let scoreIt = Scorer()
-        scoreIt.incScore(value: Int(arc4random_uniform(100)))
         scoreList = scoreIt.getSetAllScoresSorted()
 
         

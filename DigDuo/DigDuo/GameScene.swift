@@ -57,6 +57,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var enemies = [EnemyEntity]()
     
+    private var score: Scorer = Scorer()
+    private var scoreText: TextNode?
+    
     override func didMove(to view: SKView) {
         let gameMessage = SKSpriteNode(imageNamed: "TapToPlay")
         gameMessage.name = GameMessageName
@@ -74,12 +77,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background?.zPosition = 0
         background?.colorBlendFactor = 1.0
         addChild(background!)
+        
         //background!.position += CGVector(dx: dimensions.width/4.0, dy: dimensions.height/2.0)
         
-        //addChild(ui!)
+        ui = UserInterface(size: background!.size)
+        
+        let scoret = ui!.AddText(name: "score", text: String(score.score), uiPos: CGPoint(x: 0, y: 10), fontColor: .red, size: 128.0)
+        
+        scoreText = ui!.GrabByName(nodeName: scoret) as! TextNode
+        
         createPlayer(point: CGPoint(x: 50, y: 50))
         //animatePlayer(sprite: (player?.component(ofType: VisualComponent.self)?.sprite)!)
         cameraSpawn()
+        
+        addChild(ui!)
         
         physicsWorld.contactDelegate = self
         
@@ -96,9 +107,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         var count = 0
         
-        for y in 0..<Int(height)
+        for y in 0..<Int(background!.frame.width)
         {
-            for x in 0..<Int(width)
+            for x in 0..<Int(background!.frame.height)
             {
                 let randChance = arc4random_uniform(UInt32(RAND_MAX))
                 
@@ -122,7 +133,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createEnemy(point: CGPoint) -> EnemyEntity {
         let enemy = EnemyEntity.init(player: player!)
         
-        let texture = SKTexture(imageNamed: "Girl_Snake_Pixel")
+        let texture = SKTexture(imageNamed: "Enemy")
         let enemySprite = SKSpriteNode(texture: texture, color: .white, size: CGSize(width: 256, height: 256))
         enemySprite.yScale = (enemySprite.yScale)
         enemySprite.position = point
@@ -133,19 +144,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemySprite.addChild(boundary)
         
         enemySprite.physicsBody = SKPhysicsBody(circleOfRadius: radius)
-        enemySprite.physicsBody!.isDynamic = false
-        enemySprite.physicsBody!.categoryBitMask = CollisionLayer.Enemy.rawValue << 1
-        enemySprite.physicsBody!.contactTestBitMask = CollisionLayer.Player.rawValue << 1
+        enemySprite.physicsBody!.isDynamic = true
+        enemySprite.physicsBody!.categoryBitMask = CollisionLayer.Enemy.rawValue
+        enemySprite.physicsBody!.contactTestBitMask = CollisionLayer.Player.rawValue
+        enemySprite.physicsBody!.collisionBitMask = CollisionLayer.Player.rawValue
         enemySprite.physicsBody!.affectedByGravity = false
         
         enemySprite.color = UIColor.init(red: CGFloat(Float(arc4random_uniform(255))/Float(255)), green: CGFloat(Float(arc4random_uniform(255))/Float(255)), blue: CGFloat(Float(arc4random_uniform(255))/Float(255)), alpha: 1.0)
+        enemySprite.colorBlendFactor = 1.0
         
         let visComp = EnemyVisualComponent(scene: self, sprite: enemySprite, enemyEntity: enemy)
         enemy.addComponent(visComp)
         
         enemy.addComponent(EnemyMoveComponent(scene:self, sprite: enemySprite, enemyEntity: enemy))
         
+        
+        background?.addChild(enemySprite)
         enemySprite.position = point
+        
+        
         
         return enemy
     }
@@ -166,9 +183,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // add physics properties
         playerSprite.physicsBody = SKPhysicsBody(circleOfRadius: radius)
-        playerSprite.physicsBody!.isDynamic = false
-        playerSprite.physicsBody!.categoryBitMask = CollisionLayer.Player.rawValue << 1
-        playerSprite.physicsBody!.contactTestBitMask = CollisionLayer.Enemy.rawValue << 1
+        playerSprite.physicsBody!.isDynamic = true
+        playerSprite.physicsBody!.categoryBitMask = CollisionLayer.Player.rawValue
+        playerSprite.physicsBody!.contactTestBitMask = CollisionLayer.Enemy.rawValue
+        playerSprite.physicsBody!.collisionBitMask = CollisionLayer.Enemy.rawValue
         playerSprite.physicsBody!.affectedByGravity = false
         
         let visComp = VisualComponent(scene: self, sprite: playerSprite)
@@ -249,7 +267,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         particles.particleBirthRate = 0.015
         particles.particleLifetime = 0.25
         
-        addChild(particles)
+        background?.addChild(particles)
         particles.position = point
             
         particles.run(.sequence([.wait(forDuration: 1.0), .run {
@@ -271,8 +289,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player!.notifyCollision(contact: contact, selfBody: playerCollider, otherBody: enemyCollider)
         
         createCollisionParticles(point: enemyCollider.node!.position)
-        
-        enemyCollider.node!.removeFromParent()
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
@@ -339,6 +355,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         {
             enemy.update(deltaTime: currentTime/100000)
         }
+        
+        player!.update(deltaTime: currentTime/100000)        
+        
+        scoreText!.text = String(player!.getScore())
         
         // Called before each frame is rendered
     }

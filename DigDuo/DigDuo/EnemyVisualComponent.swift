@@ -22,8 +22,6 @@ class EnemyVisualComponent: GKComponent {
         self.sprite = sprite
         self.enemyEntity = enemyEntity
         
-        self.scene.addChild(sprite)
-        
         super.init()
     }
     
