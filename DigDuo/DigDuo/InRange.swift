@@ -12,7 +12,7 @@
 import SpriteKit
 import GameplayKit
 
-class inRange: GKState {
+class InRange: GKState {
     
     unowned let scene: GameScene
     var sprite: SKSpriteNode

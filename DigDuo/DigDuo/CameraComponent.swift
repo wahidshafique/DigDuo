@@ -10,29 +10,32 @@ import SpriteKit
 import GameplayKit
 
 class CameraComponent: GKComponent {
-    unowned let scene: GameScene
+    let scene: GameScene
     let sprite: SKSpriteNode
-    var camera: SKCameraNode
+    var cam: SKCameraNode
     
     init(scene: SKScene, sprite: SKSpriteNode) {
-        self.scene = scene.self as! GameScene
-        self.camera = SKCameraNode()
+        self.scene = scene as! GameScene
+        self.cam = SKCameraNode()
         self.sprite = sprite
+        scene.addChild(cam)
         super.init()
+    }
+    
+    override func didAddToEntity() {
         cameraSpawn()
     }
     
     func cameraSpawn() {
-        //todo, migrate to world..
-        let cam = SKCameraNode()
-        self.camera = cam
-        camera.setScale(2.0)
+        print(scene)
+        print("cam active")
+        cam.setScale(2.0)
         // Constrain the camera to stay a constant distance of 0 points from the player node.
         let zeroRange = SKRange(constantValue: 0.0)
         let playerLocationConstraint = SKConstraint.distance(zeroRange, to: sprite)
         
         // get the scene size as scaled by `scaleMode = .AspectFill`
-        let scaledSize = CGSize(width: scene.size.width * (camera.xScale), height: scene.size.height * (camera.yScale))
+        let scaledSize = CGSize(width: scene.size.width * (cam.xScale), height: scene.size.height * (cam.yScale))
         
         // get the frame of the entire level contents
         let boardNode = scene.background
@@ -51,7 +54,8 @@ class CameraComponent: GKComponent {
         let levelEdgeConstraint = SKConstraint.positionX(xRange, y: yRange)
         levelEdgeConstraint.referenceNode = boardNode
         cam.constraints = [playerLocationConstraint, levelEdgeConstraint]
-        scene.addChild(cam)
+        //scene.addChild(cam)
+        //scene.addChild(<#T##node: SKNode##SKNode#>)
         //cam?.addChild(ui!)
     }
     

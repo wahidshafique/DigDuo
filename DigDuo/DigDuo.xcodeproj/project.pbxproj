@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		180898FD1E9C2F75006D2AF7 /* ARCADECLASSIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 180898FC1E9C2F43006D2AF7 /* ARCADECLASSIC.TTF */; };
 		181706711EA3ECD100241998 /* CameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181706701EA3ECD100241998 /* CameraComponent.swift */; };
-		1823C45D1EA314F300D13D72 /* inRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823C45C1EA314F300D13D72 /* inRange.swift */; };
-		1823C45F1EA3154700D13D72 /* isSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823C45E1EA3154700D13D72 /* isSafe.swift */; };
+		181706731EA43F3B00241998 /* MovingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181706721EA43F3B00241998 /* MovingState.swift */; };
+		181706751EA4404600241998 /* StaticState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181706741EA4404600241998 /* StaticState.swift */; };
+		1823C45D1EA314F300D13D72 /* InRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823C45C1EA314F300D13D72 /* InRange.swift */; };
+		1823C45F1EA3154700D13D72 /* IsSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823C45E1EA3154700D13D72 /* IsSafe.swift */; };
 		18551E0B1E7B896500A75168 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18551E0A1E7B896500A75168 /* AppDelegate.swift */; };
 		18551E111E7B896500A75168 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18551E101E7B896500A75168 /* GameScene.swift */; };
 		18551E131E7B896500A75168 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18551E121E7B896500A75168 /* GameViewController.swift */; };
@@ -48,8 +50,10 @@
 /* Begin PBXFileReference section */
 		180898FC1E9C2F43006D2AF7 /* ARCADECLASSIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = ARCADECLASSIC.TTF; sourceTree = "<group>"; };
 		181706701EA3ECD100241998 /* CameraComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraComponent.swift; sourceTree = "<group>"; };
-		1823C45C1EA314F300D13D72 /* inRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = inRange.swift; sourceTree = "<group>"; };
-		1823C45E1EA3154700D13D72 /* isSafe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = isSafe.swift; sourceTree = "<group>"; };
+		181706721EA43F3B00241998 /* MovingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovingState.swift; sourceTree = "<group>"; };
+		181706741EA4404600241998 /* StaticState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticState.swift; sourceTree = "<group>"; };
+		1823C45C1EA314F300D13D72 /* InRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InRange.swift; sourceTree = "<group>"; };
+		1823C45E1EA3154700D13D72 /* IsSafe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsSafe.swift; sourceTree = "<group>"; };
 		18551E071E7B896500A75168 /* DigDuo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigDuo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18551E0A1E7B896500A75168 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18551E101E7B896500A75168 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -118,8 +122,10 @@
 		1823C45B1EA314D700D13D72 /* States */ = {
 			isa = PBXGroup;
 			children = (
-				1823C45C1EA314F300D13D72 /* inRange.swift */,
-				1823C45E1EA3154700D13D72 /* isSafe.swift */,
+				1823C45C1EA314F300D13D72 /* InRange.swift */,
+				1823C45E1EA3154700D13D72 /* IsSafe.swift */,
+				181706721EA43F3B00241998 /* MovingState.swift */,
+				181706741EA4404600241998 /* StaticState.swift */,
 			);
 			name = States;
 			sourceTree = "<group>";
@@ -344,11 +350,12 @@
 				18B31D9E1E9C27F400D39581 /* Effector.swift in Sources */,
 				A7E0FAAF1E7CBB210089C0DB /* MainMenu.swift in Sources */,
 				A7E0FAA41E7C90CA0089C0DB /* GeneralExtensions.swift in Sources */,
-				1823C45F1EA3154700D13D72 /* isSafe.swift in Sources */,
+				1823C45F1EA3154700D13D72 /* IsSafe.swift in Sources */,
 				1863A5FD1EA16DCF000FFED3 /* Player.swift in Sources */,
+				181706751EA4404600241998 /* StaticState.swift in Sources */,
 				18FAC8AE1EA30848002FE99C /* HealthComponent.swift in Sources */,
 				18EFD7A61E7B8A8200CD832D /* EasterEggScene.swift in Sources */,
-				1823C45D1EA314F300D13D72 /* inRange.swift in Sources */,
+				1823C45D1EA314F300D13D72 /* InRange.swift in Sources */,
 				A7D7DA221EA2CD8F00ACB39C /* Enemy.swift in Sources */,
 				A7E0FAB81E7CC1410089C0DB /* TextNode.swift in Sources */,
 				181706711EA3ECD100241998 /* CameraComponent.swift in Sources */,
@@ -365,6 +372,7 @@
 				18FAC8A61EA305CC002FE99C /* PlayerEntity.swift in Sources */,
 				18551E0B1E7B896500A75168 /* AppDelegate.swift in Sources */,
 				A7E0FAC21E7CEDBC0089C0DB /* Leaderboard.swift in Sources */,
+				181706731EA43F3B00241998 /* MovingState.swift in Sources */,
 				A72F8A241E8B32C900E44268 /* mymath.c in Sources */,
 				A7D7DA1C1E9EB38A00ACB39C /* LevelObject.swift in Sources */,
 				A7E0FAAB1E7CA6670089C0DB /* DigduoScene.swift in Sources */,

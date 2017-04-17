@@ -9,15 +9,14 @@
 import SpriteKit
 import GameplayKit
 
+struct PhysicsCategory {
+    static let None:    UInt32 = 0
+    static let Mole:   UInt32 = 0b1
+    static let Enemy:  UInt32 = 0b10
+    static let Collectable:    UInt32 = 0b100
+}
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    
-    struct PhysicsCategory {
-        static let None:    UInt32 = 0
-        static let Mole:   UInt32 = 0b1
-        static let Enemy:  UInt32 = 0b10
-        static let Collectable:    UInt32 = 0b100
-    }
-    
     //TODO temp, abstract it later
     private var playerAnim: Animator?
     //private var player :Player?
@@ -31,6 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var npc: SKSpriteNode?
     
     override func didMove(to view: SKView) {
+        self.name = "Main Scene"
         super.didMove(to: view)
         self.backgroundColor = UIColor.brown
         let dimensions = getDimensionsInScreen()
@@ -61,8 +61,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             uiElementNames.append(pause)
         }
         createPlayer(point: CGPoint(x: 0, y: 0))
-        animatePlayer(sprite: (player?.component(ofType: VisualComponent.self)?.sprite)!)
-        //cameraSpawn()
+        //animatePlayer(sprite: (player?.component(ofType: VisualComponent.self)?.sprite)!)
+        cameraSpawn()
     }
     
     func createPlayer(point: CGPoint) {
@@ -86,8 +86,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player?.addComponent(visComp)
     
         player?.addComponent(MoveComponent(scene:self, sprite: playerSprite))
-        cameraSpawn()
-        //player?.addComponent(CameraComponent(scene: self, sprite: playerSprite))
+        
+        //Not working as a component for some reason
+        //let camComp = CameraComponent(scene: self, sprite: playerSprite)
+        //player?.addComponent(camComp)
     }
     
     func animatePlayer(sprite: SKSpriteNode) {
@@ -149,6 +151,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func touchDown(atPoint pos : CGPoint) {
         player?.component(ofType: MoveComponent.self)?.moveToPoint(pos, duration: 1)
+        
         ui!.onTouchDown(point: pos)
     }
     

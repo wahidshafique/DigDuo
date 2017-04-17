@@ -16,7 +16,7 @@ class VisualComponent: GKComponent {
     let sprite: SKSpriteNode
     
     /* a variable for the state machine, if needed */
-    //let gameState: GKStateMachine
+    let gameState: GKStateMachine
     
     /* main init */
     init(scene: SKScene, sprite: SKSpriteNode) {
@@ -24,8 +24,8 @@ class VisualComponent: GKComponent {
         self.sprite = sprite
         self.scene.addChild(sprite)
         /* init the game state machine with the available states */
-//        self.gameState = GKStateMachine(states:[ EnemyInRange(scene: scene, sprite: sprite),
-//                                                 EnemyIsSafe(scene: scene, sprite: sprite) ])
+        self.gameState = GKStateMachine(states:[ MovingState(scene: scene, sprite: sprite),
+                                                 StaticState(scene: scene, sprite: sprite) ])
         super.init()
     }
     
@@ -34,15 +34,17 @@ class VisualComponent: GKComponent {
     }
     
     /* ==============================================================
-     GAME STATES
+     GAME STATES [helpers, not needed unless externally called'
      ============================================================== */
     
     /* functions for changing between states */
-    func targetInRange() {
+    func movingFunc() {
+        gameState.enter(MovingState.self)
         //TODO
     }
     
-    func tagetOutOfRange() {
+    func staticFunc() {
+        gameState.enter(StaticState.self)
         //TODO
     }
 }
