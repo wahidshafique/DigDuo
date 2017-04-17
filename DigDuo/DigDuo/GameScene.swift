@@ -34,7 +34,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         super.didMove(to: view)
         self.backgroundColor = UIColor.brown
         let dimensions = getDimensionsInScreen()
-        ui = UserInterface(size: CGSize(width: dimensions.width, height: dimensions.height))
         
         background = SKSpriteNode(texture: SKTexture(imageNamed: "Background"), color: .white, size: CGSize(width: 1920, height: 4320))
         background?.blendMode = .replace
@@ -42,24 +41,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background?.colorBlendFactor = 1.0
         addChild(background!)
         background!.position += CGVector(dx: dimensions.width/4.0, dy: dimensions.height/2.0)
-    
         
         //addChild(ui!)
-        print("dimension x \(dimensions.width) \n")
-        print("dimension y \(dimensions.height) \n")
-        let scoreTxt = ui?.AddText(name: "txt-score", text: "Score: 000", uiPos: CGPoint(x: 15, y: 45), fontColor: .yellow, size: 25.0)
-        let pauseButton = ui?.AddButton(name: "btn-pause", imageNamed: "pause", text: "", uiPos: CGPoint(x: 40, y: 45), fontColor: .clear, size: CGSize(width: 60, height: 60), closure: {
-            self.loadScene(scene: GameoverScene.init(), transition: SKTransition.crossFade(withDuration: 0.35))
-        })
-        
-        
-        // storing these keys in case we need to access them later through the ui
-        if let score = scoreTxt{
-            uiElementNames.append(score)
-        }
-        if let pause = pauseButton {
-            uiElementNames.append(pause)
-        }
         createPlayer(point: CGPoint(x: 0, y: 0))
         //animatePlayer(sprite: (player?.component(ofType: VisualComponent.self)?.sprite)!)
         cameraSpawn()
@@ -91,26 +74,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //let camComp = CameraComponent(scene: self, sprite: playerSprite)
         //player?.addComponent(camComp)
     }
-    
-    func animatePlayer(sprite: SKSpriteNode) {
-         var playerAnimFrames:[SKTexture]!
-         let pAtlas = SKTextureAtlas(named: "PlayerAnim")
-         var walkFrames = [SKTexture]()
-        //TODO, ADD EACH STATE TO THE STATE MACHINE LATER
-        let numImg = pAtlas.textureNames.count
-        
-        for i in 1 ..< numImg / 2 {
-            let pTextureName = "Moly\(i)"
-            walkFrames.append(pAtlas.textureNamed(pTextureName))
-        }
-        playerAnimFrames = walkFrames
-        sprite.run(SKAction.repeatForever(
-            SKAction.animate(with: playerAnimFrames,
-                             timePerFrame: 0.1,
-                             resize: false,
-                             restore: true)),
-                   withKey:"walkingPlayer")
-    }
 
     func cameraSpawn() {
         let p = player?.component(ofType: VisualComponent.self)?.sprite
@@ -118,6 +81,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cam = SKCameraNode()
         self.camera = cam
         camera?.setScale(2.0)
+        
+        ui = UserInterface(size: CGSize(width: (cam?.frame.size.width)!, height: (cam?.frame.size.height)!))
+        let scoreTxt = ui?.AddText(name: "txt-score", text: "Score: 000", uiPos: CGPoint(x: 0, y: 0), fontColor: .yellow, size: 25.0)
+        let pauseButton = ui?.AddButton(name: "btn-pause", imageNamed: "pause", text: "", uiPos: CGPoint(x: 0, y: 0), fontColor: .clear, size: CGSize(width: 60, height: 60), closure: {
+            self.loadScene(scene: GameoverScene.init(), transition: SKTransition.crossFade(withDuration: 0.35))
+        })
+        
+        // storing these keys in case we need to access them later through the ui
+        if let score = scoreTxt{
+            uiElementNames.append(score)
+        }
+        if let pause = pauseButton {
+            uiElementNames.append(pause)
+        }
+        
+        cam?.addChild(ui!)
+        
         // Constrain the camera to stay a constant distance of 0 points from the player node.
         let zeroRange = SKRange(constantValue: 0.0)
         let playerLocationConstraint = SKConstraint.distance(zeroRange, to: p!)
@@ -146,7 +126,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         cam?.constraints = [playerLocationConstraint, levelEdgeConstraint]
         self.addChild(cam!)
-        cam?.addChild(ui!)
     }
     
     func touchDown(atPoint pos : CGPoint) {
