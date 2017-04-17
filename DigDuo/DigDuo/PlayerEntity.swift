@@ -9,12 +9,18 @@
 import GameplayKit
 
 class PlayerEntity: GKEntity {
+    
     var pos: CGPoint!
     
     /* main init */
     init(pos: CGPoint) {
         self.pos = pos
         super.init()
+    }
+    
+    func notifyCollision(contact: SKPhysicsContact, selfBody: SKPhysicsBody, otherBody: SKPhysicsBody)
+    {
+         
     }
     
     required init?(coder aDecoder: NSCoder) {

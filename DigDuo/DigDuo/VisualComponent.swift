@@ -19,13 +19,12 @@ class VisualComponent: GKComponent {
     let gameState: GKStateMachine
     
     /* main init */
-    init(scene: SKScene, sprite: SKSpriteNode) {
+    init(scene: SKScene, sprite: SKSpriteNode, states: GKState ...) {
         self.scene = scene as! GameScene
         self.sprite = sprite
         self.scene.addChild(sprite)
         /* init the game state machine with the available states */
-        self.gameState = GKStateMachine(states:[ MovingState(scene: scene, sprite: sprite),
-                                                 StaticState(scene: scene, sprite: sprite) ])
+        self.gameState = GKStateMachine(states: states)
         super.init()
     }
     

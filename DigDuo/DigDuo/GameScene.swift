@@ -47,7 +47,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var playerAnim: Animator?
     //private var player :Player?
     private var player: PlayerEntity?
-    private var enem: Enemy?
     
     private var cam: SKCameraNode?
     private var ui : UserInterface?
@@ -55,6 +54,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     public var background: SKSpriteNode?
     private var npc: SKSpriteNode?
+    
+    private var enemies = [EnemyEntity]()
     
     override func didMove(to view: SKView) {
         let gameMessage = SKSpriteNode(imageNamed: "TapToPlay")
@@ -76,17 +77,77 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //background!.position += CGVector(dx: dimensions.width/4.0, dy: dimensions.height/2.0)
         
         //addChild(ui!)
-        createPlayer(point: CGPoint(x: 0, y: 0))
-        createEnemy(point: CGPoint(x: 20, y: 45))
+        createPlayer(point: CGPoint(x: 50, y: 50))
         //animatePlayer(sprite: (player?.component(ofType: VisualComponent.self)?.sprite)!)
         cameraSpawn()
+        
+        physicsWorld.contactDelegate = self
+        
+        createRandomEnemies(max: 30)
         
         gameState.enter(WaitForTap.self)
     }
     
-    func createEnemy(point: CGPoint) {
-        enem = Enemy()
-        self.addChild(enem!)
+    func createRandomEnemies(max: Int)
+    {
+        let dim = getDimensionsInScreen()
+        let width = dim.width
+        let height = dim.height
+        
+        var count = 0
+        
+        for y in 0..<Int(height)
+        {
+            for x in 0..<Int(width)
+            {
+                let randChance = arc4random_uniform(UInt32(RAND_MAX))
+                
+                if (Float(randChance) > (0.75 * Float(RAND_MAX)))
+                {
+                    let enemy = createEnemy(point: CGPoint.init(x: x, y: y))
+                    
+                    enemies.append(enemy)
+                    
+                    count += 1
+                    
+                    if count >= max
+                    {
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
+    func createEnemy(point: CGPoint) -> EnemyEntity {
+        let enemy = EnemyEntity.init(player: player!)
+        
+        let texture = SKTexture(imageNamed: "Girl_Snake_Pixel")
+        let enemySprite = SKSpriteNode(texture: texture, color: .white, size: CGSize(width: 256, height: 256))
+        enemySprite.yScale = (enemySprite.yScale)
+        enemySprite.position = point
+        
+        let radius = CGFloat(enemySprite.size.width / 2)
+        let boundary = SKShapeNode(circleOfRadius: radius)
+        boundary.strokeColor = UIColor.gray
+        enemySprite.addChild(boundary)
+        
+        enemySprite.physicsBody = SKPhysicsBody(circleOfRadius: radius)
+        enemySprite.physicsBody!.isDynamic = false
+        enemySprite.physicsBody!.categoryBitMask = CollisionLayer.Enemy.rawValue << 1
+        enemySprite.physicsBody!.contactTestBitMask = CollisionLayer.Player.rawValue << 1
+        enemySprite.physicsBody!.affectedByGravity = false
+        
+        enemySprite.color = UIColor.init(red: CGFloat(Float(arc4random_uniform(255))/Float(255)), green: CGFloat(Float(arc4random_uniform(255))/Float(255)), blue: CGFloat(Float(arc4random_uniform(255))/Float(255)), alpha: 1.0)
+        
+        let visComp = EnemyVisualComponent(scene: self, sprite: enemySprite, enemyEntity: enemy)
+        enemy.addComponent(visComp)
+        
+        enemy.addComponent(EnemyMoveComponent(scene:self, sprite: enemySprite, enemyEntity: enemy))
+        
+        enemySprite.position = point
+        
+        return enemy
     }
     
     
@@ -106,6 +167,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // add physics properties
         playerSprite.physicsBody = SKPhysicsBody(circleOfRadius: radius)
         playerSprite.physicsBody!.isDynamic = false
+        playerSprite.physicsBody!.categoryBitMask = CollisionLayer.Player.rawValue << 1
+        playerSprite.physicsBody!.contactTestBitMask = CollisionLayer.Enemy.rawValue << 1
+        playerSprite.physicsBody!.affectedByGravity = false
         
         let visComp = VisualComponent(scene: self, sprite: playerSprite)
         player?.addComponent(visComp)
@@ -178,6 +242,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(cam!)
     }
     
+    func createCollisionParticles(point: CGPoint)
+    {
+        let particles: SKEmitterNode = SKEmitterNode.init()
+        particles.particleColor = .red
+        particles.particleBirthRate = 0.015
+        particles.particleLifetime = 0.25
+        
+        addChild(particles)
+        particles.position = point
+            
+        particles.run(.sequence([.wait(forDuration: 1.0), .run {
+            particles.removeFromParent()
+            }]))
+    }
+    
+    //////////////////////////////////////
+    // collision handlers from protocol
+    /////////////////////////////////////
+    func didBegin(_ contact: SKPhysicsContact) {
+        
+        let playerCollider = contact.bodyA.categoryBitMask == UInt32(CollisionLayer.Player.rawValue)
+            ? contact.bodyA : contact.bodyB
+        
+        let enemyCollider = contact.bodyA.categoryBitMask == UInt32(CollisionLayer.Enemy.rawValue)
+            ? contact.bodyA : contact.bodyB
+        
+        player!.notifyCollision(contact: contact, selfBody: playerCollider, otherBody: enemyCollider)
+        
+        createCollisionParticles(point: enemyCollider.node!.position)
+        
+        enemyCollider.node!.removeFromParent()
+    }
+    
+    func didEnd(_ contact: SKPhysicsContact) {
+        
+    }
+    //////////////////////////////////////
+    
+    
     func touchDown(atPoint pos : CGPoint) {
         //player?.component(ofType: MoveComponent.self)?.moveToPoint(pos, duration: 1)
         
@@ -231,7 +334,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
         gameState.update(deltaTime: currentTime)
-        enem?.update(deltaTime: CGFloat(currentTime))
+        
+        for enemy in enemies
+        {
+            enemy.update(deltaTime: currentTime/100000)
+        }
+        
         // Called before each frame is rendered
     }
     

@@ -11,18 +11,19 @@ import GameplayKit
 
 /* a simple component to handle the movement of the entity */
 
-class MoveComponent: GKComponent {
+class EnemyMoveComponent: GKComponent {
     
     /* main variables to hold a reference for the scene and sprite */
     unowned let scene: GameScene
-    let sprite: SKSpriteNode    
+    let sprite: SKSpriteNode
+    unowned let enemy: EnemyEntity
     
-    let gameState: GKStateMachine
     /* main init */
-    init(scene: SKScene, sprite: SKSpriteNode, states: GKState ...) {
+    init(scene: SKScene, sprite: SKSpriteNode, enemyEntity: EnemyEntity) {
         self.scene = scene as! GameScene
         self.sprite = sprite
-        self.gameState = GKStateMachine(states: states)
+        self.enemy = enemyEntity
+        
         super.init()
     }
     
@@ -32,12 +33,11 @@ class MoveComponent: GKComponent {
     
     /* function to move sprite from point A to point B via touch */
     func moveToPoint(_ point: CGPoint, duration: TimeInterval) {
-        gameState.enter(MovingState.self)
         sprite.rotateVersus(destPoint: point)
         let moveTo = SKAction.move(to: point, duration: duration)
         
         sprite.run(SKAction.sequence([moveTo, SKAction.run({ ()-> Void in
-            self.gameState.enter(StaticState.self)
+            self.enemy.stateMachine?.enter(IdleState.self)
         })])
         )}
 }
