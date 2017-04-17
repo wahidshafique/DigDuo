@@ -122,10 +122,8 @@
 		1823C45B1EA314D700D13D72 /* States */ = {
 			isa = PBXGroup;
 			children = (
-				1823C45C1EA314F300D13D72 /* InRange.swift */,
-				1823C45E1EA3154700D13D72 /* IsSafe.swift */,
-				181706721EA43F3B00241998 /* MovingState.swift */,
-				181706741EA4404600241998 /* StaticState.swift */,
+				A7D51B061EA4609900F89AE5 /* PlayerStates */,
+				A7D51B051EA4609200F89AE5 /* EnemyStates */,
 			);
 			name = States;
 			sourceTree = "<group>";
@@ -208,6 +206,24 @@
 				18B31D9D1E9C27F400D39581 /* Effector.swift */,
 			);
 			name = Animation;
+			sourceTree = "<group>";
+		};
+		A7D51B051EA4609200F89AE5 /* EnemyStates */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = EnemyStates;
+			sourceTree = "<group>";
+		};
+		A7D51B061EA4609900F89AE5 /* PlayerStates */ = {
+			isa = PBXGroup;
+			children = (
+				1823C45C1EA314F300D13D72 /* InRange.swift */,
+				1823C45E1EA3154700D13D72 /* IsSafe.swift */,
+				181706721EA43F3B00241998 /* MovingState.swift */,
+				181706741EA4404600241998 /* StaticState.swift */,
+			);
+			name = PlayerStates;
 			sourceTree = "<group>";
 		};
 		A7E0FA9A1E7C8F4B0089C0DB /* WorldObjects */ = {
