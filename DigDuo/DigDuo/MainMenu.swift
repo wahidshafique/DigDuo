@@ -18,7 +18,7 @@ class MainMenu: SKScene {
         let dimensions = getDimensionsInScreen()
         ui = UserInterface(size: CGSize(width: dimensions.width, height: dimensions.height))
         
-        background = SKSpriteNode(texture: SKTexture(imageNamed: "Background"), color: .white, size: dimensions)
+        background = SKSpriteNode(texture: SKTexture(imageNamed: "Splash"), color: .white, size: dimensions)
         background?.blendMode = .replace
         background?.zPosition = 0
         background?.colorBlendFactor = 1.0

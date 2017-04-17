@@ -36,7 +36,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let dimensions = getDimensionsInScreen()
         ui = UserInterface(size: CGSize(width: dimensions.width, height: dimensions.height))
         
-        background = SKSpriteNode(texture: SKTexture(imageNamed: "Background"), color: .white, size: CGSize(width: 1920, height: 1080))
+        background = SKSpriteNode(texture: SKTexture(imageNamed: "Background"), color: .white, size: CGSize(width: 1920, height: 4320))
         background?.blendMode = .replace
         background?.zPosition = 0
         background?.colorBlendFactor = 1.0
