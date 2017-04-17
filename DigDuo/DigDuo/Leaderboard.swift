@@ -10,12 +10,18 @@ import SpriteKit
 import GameplayKit
 
 class Leaderboard: SKScene {
+    private var scoreList = [Int]()
     private var ui : UserInterface?
     private var uiElementNames = [String]()
     private var background: SKSpriteNode?
     private var npc: SKSpriteNode?
     
     override func didMove(to view: SKView) {
+        let scoreIt = Scorer()
+        scoreIt.incScore(value: Int(arc4random_uniform(100)))
+        scoreList = scoreIt.getSetAllScoresSorted()
+
+        
         let dimensions = getDimensionsInScreen()
         ui = UserInterface(size: CGSize(width: dimensions.width, height: dimensions.height))
         
@@ -41,12 +47,12 @@ class Leaderboard: SKScene {
         
         let maintxt = ui?.AddText(name: "txt-leaderboard", text: "LEADERBOARD", uiPos: CGPoint(x: 50, y: 75), fontColor: .red, size: 56.0)
         
-        let score1txt = ui?.AddText(name: "txt-score1", text: "1. 4096", uiPos: CGPoint(x: 50, y: 60), fontColor: .yellow, size: 48.0)
-        let score2txt = ui?.AddText(name: "txt-score2", text: "2. 2048", uiPos: CGPoint(x: 50, y: 55), fontColor: .yellow, size: 44.0)
-        let score3txt = ui?.AddText(name: "txt-score3", text: "3. 1024", uiPos: CGPoint(x: 50, y: 50), fontColor: .yellow, size: 40.0)
-        let score4txt = ui?.AddText(name: "txt-score4", text: "4. 512", uiPos: CGPoint(x: 50, y: 45), fontColor: .yellow, size: 36.0)
-        let score5txt = ui?.AddText(name: "txt-score5", text: "5. 256", uiPos: CGPoint(x: 50, y: 40), fontColor: .yellow, size: 32.0)
-        let score6txt = ui?.AddText(name: "txt-score6", text: "6. 128", uiPos: CGPoint(x: 50, y: 35), fontColor: .yellow, size: 28.0)
+        let score1txt = ui?.AddText(name: "txt-score1", text: "1. \(scoreList[0])", uiPos: CGPoint(x: 50, y: 60), fontColor: .yellow, size: 48.0)
+        let score2txt = ui?.AddText(name: "txt-score2", text: "2. \(scoreList[1])", uiPos: CGPoint(x: 50, y: 55), fontColor: .yellow, size: 44.0)
+        let score3txt = ui?.AddText(name: "txt-score3", text: "3. \(scoreList[2])", uiPos: CGPoint(x: 50, y: 50), fontColor: .yellow, size: 40.0)
+        let score4txt = ui?.AddText(name: "txt-score4", text: "4. \(scoreList[3])", uiPos: CGPoint(x: 50, y: 45), fontColor: .yellow, size: 36.0)
+        let score5txt = ui?.AddText(name: "txt-score5", text: "5. \(scoreList[4])", uiPos: CGPoint(x: 50, y: 40), fontColor: .yellow, size: 32.0)
+        let score6txt = ui?.AddText(name: "txt-score6", text: "6. \(scoreList[5])", uiPos: CGPoint(x: 50, y: 35), fontColor: .yellow, size: 28.0)
         
         
         let textureButton = ui?.atlas.textureNamed("blue_button05")

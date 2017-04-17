@@ -11,6 +11,7 @@
 		181706711EA3ECD100241998 /* CameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181706701EA3ECD100241998 /* CameraComponent.swift */; };
 		181706731EA43F3B00241998 /* MovingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181706721EA43F3B00241998 /* MovingState.swift */; };
 		181706751EA4404600241998 /* StaticState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181706741EA4404600241998 /* StaticState.swift */; };
+		181706771EA4671D00241998 /* Scorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181706761EA4671D00241998 /* Scorer.swift */; };
 		1823C45D1EA314F300D13D72 /* InRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823C45C1EA314F300D13D72 /* InRange.swift */; };
 		1823C45F1EA3154700D13D72 /* IsSafe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1823C45E1EA3154700D13D72 /* IsSafe.swift */; };
 		18551E0B1E7B896500A75168 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18551E0A1E7B896500A75168 /* AppDelegate.swift */; };
@@ -52,6 +53,7 @@
 		181706701EA3ECD100241998 /* CameraComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraComponent.swift; sourceTree = "<group>"; };
 		181706721EA43F3B00241998 /* MovingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovingState.swift; sourceTree = "<group>"; };
 		181706741EA4404600241998 /* StaticState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StaticState.swift; sourceTree = "<group>"; };
+		181706761EA4671D00241998 /* Scorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scorer.swift; sourceTree = "<group>"; };
 		1823C45C1EA314F300D13D72 /* InRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InRange.swift; sourceTree = "<group>"; };
 		1823C45E1EA3154700D13D72 /* IsSafe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsSafe.swift; sourceTree = "<group>"; };
 		18551E071E7B896500A75168 /* DigDuo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigDuo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,6 +255,7 @@
 				A7E0FAA51E7CA3C00089C0DB /* CStuff */,
 				A7E0FAA31E7C90CA0089C0DB /* GeneralExtensions.swift */,
 				A7E0FAB31E7CBF180089C0DB /* Globals.swift */,
+				181706761EA4671D00241998 /* Scorer.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				18EFD7A61E7B8A8200CD832D /* EasterEggScene.swift in Sources */,
 				1823C45D1EA314F300D13D72 /* InRange.swift in Sources */,
 				A7D7DA221EA2CD8F00ACB39C /* Enemy.swift in Sources */,
+				181706771EA4671D00241998 /* Scorer.swift in Sources */,
 				A7E0FAB81E7CC1410089C0DB /* TextNode.swift in Sources */,
 				181706711EA3ECD100241998 /* CameraComponent.swift in Sources */,
 				A7E0FAC41E7CEDC90089C0DB /* GameoverScene.swift in Sources */,
